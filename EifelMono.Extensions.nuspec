@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>EifelMono.Extensions</id>
+        <version>1.0.0</version>
+        <title>If and Switch Extensions</title>
+        <authors>eifelmono@klapperich.de</authors>
+        <owners>eifelmono</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>If and Switch Extensions for your c# code
+
+Source to Github is coming soon.</description>
+        <summary>int test = 1;
+test.Switch()
+  .Case(2, (r) =&gt; { ; })
+  .CaseIn(3, 4, 5, (r) =&gt;.......</summary>
+        <releaseNotes>THE BEGIN</releaseNotes>
+        <copyright>Use it or lose it!</copyright>
+        <tags>In InRange If Is Switch Case CaseIn</tags>
+    </metadata>
+    <files>
+        <file src="Netx.x\EifelMono.Extensions.net3.5\bin\Release\EifelMono.Extensions.dll" target="lib\net35\EifelMono.Extensions.dll" />
+        <file src="Netx.x\EifelMono.Extensions.net4.0\bin\Release\EifelMono.Extensions.dll" target="lib\net40\EifelMono.Extensions.dll" />
+        <file src="Netx.x\EifelMono.Extensions.net4.5\bin\Release\EifelMono.Extensions.dll" target="lib\net45\EifelMono.Extensions.dll" />
+        <file src="Pcl\EifelMono.Extensions\bin\Release\EifelMono.Extensions.dll" target="lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\EifelMono.Extensions.dll" />
+    </files>
+</package>
