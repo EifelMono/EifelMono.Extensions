@@ -21,7 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleBegin", "Samples\Samp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A02FBD84-F4B6-43B5-B6F6-613A65E67D13}"
 	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
 		LICENSE = LICENSE
 	EndProjectSection
 EndProject
