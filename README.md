@@ -1,8 +1,8 @@
-EifelMono.Extensions
-====================
+<H1>EifelMono.Extensions</H1>
 
-For your info it is better readable
-but the performance is the other thing.
+For your info it is better readable  
+
+but the performance is a other thing.
 
 Sample Switch!
 
