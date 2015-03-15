@@ -13,19 +13,19 @@ Sample Switch!
         {
             Console.WriteLine("Case(2, ");
         })
-        .CaseIn(3, 4, 5, (r) =>
+        .CaseIn(3, 4, 5, (p) =>
         {
             Console.WriteLine("CaseIn(3, 4, 5,");
         })
-        .CaseInRange(10, 20, (r) =>
+        .CaseInRange(10, 20, (p) =>
         {
             Console.WriteLine("CaseInRange(19, 20,");
         })
-        .CaseTrue(DateTime.Now.Second == 4711, (r) =>
+        .CaseTrue(DateTime.Now.Second == 4711, (p) =>
         {
             Console.WriteLine("CaseTrue(xxx,");
         })
-        .Default((r) =>
+        .Default((p) =>
         {
             Console.WriteLine("SwitchInt Default(");
         });
