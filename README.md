@@ -1,6 +1,8 @@
 EifelMono.Extensions
 ====================
 
+For your info it is better readable
+but the performance is the other thing.
 
 Sample Switch!
 
