@@ -9,7 +9,7 @@ Sample Switch!
  	int Test = 1;
 
     Test.Switch()
-        .Case(2, (r) =>
+        .Case(2, (p) =>
         {
             Console.WriteLine("Case(2, ");
         })
