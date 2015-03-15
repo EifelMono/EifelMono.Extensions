@@ -3,12 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{99FAD7E0-CE47-4C47-9A81-8F147C402C31}</ProjectGuid>
+    <ProjectGuid>{87553F4E-B048-4A75-8AC7-D84460E5FC6F}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>EifelMono.Extensions</RootNamespace>
-    <AssemblyName>EifelMono.Extensions</AssemblyName>
-    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <RootNamespace>EifelMono.Extensions.Test</RootNamespace>
+    <AssemblyName>EifelMono.Extensions.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -22,6 +20,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -29,13 +28,26 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Flow\If.cs" />
-    <Compile Include="Flow\In.cs" />
-    <Compile Include="Flow\Position.cs" />
-    <Compile Include="Flow\String.cs" />
-    <Compile Include="Flow\Switch.cs" />
-    <Compile Include="Flow\Core.cs" />
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="TestSwitch.cs" />
+    <Compile Include="TestIf.cs" />
+    <Compile Include="TestIn.cs" />
+    <Compile Include="TestString.cs" />
+    <Compile Include="TestClass.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Pcl\EifelMono.Extensions\EifelMono.Extensions.csproj">
+      <Project>{99FAD7E0-CE47-4C47-9A81-8F147C402C31}</Project>
+      <Name>EifelMono.Extensions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>

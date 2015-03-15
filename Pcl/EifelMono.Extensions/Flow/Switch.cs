@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace EifelMono.Extensions
 {
@@ -23,10 +24,10 @@ namespace EifelMono.Extensions
 
         #region Switch
 
-        public static SwitchCasePipe<T> Switch<T>(this T value)  where T : IComparable
+        public static SwitchCasePipe<T> Switch<T>(this T value)
         {
             SwitchCasePipe<T> pipe = new SwitchCasePipe<T>();
-            pipe.Value = value;
+            pipe.CompareValue = value;
 
             return pipe;
         }
@@ -35,30 +36,25 @@ namespace EifelMono.Extensions
 
         #region Case Default
 
-        public static SwitchCasePipe<T> Case<T>(this SwitchCasePipe<T> pipe, T compareValue, Flow.Pipe<T>.Action action) where T : IComparable
+        public static SwitchCasePipe<T> Case<T>(this SwitchCasePipe<T> pipe, T choice, Flow.Pipe<T>.Action action)
         {
-            if (pipe.Return)
+            if (pipe.Executed)
                 return pipe;
 
-            if (pipe.Value.Equals(compareValue))
+            if (pipe.CompareValue.Equals(choice))
             {
-                pipe.Return = true;
+                pipe.Executed = true;
                 if (action != null)
                     action(pipe);
             }
             return pipe;
         }
 
-        public static SwitchCasePipe<T> CaseIs<T>(this SwitchCasePipe<T> pipe, T compareValue, Flow.Pipe<T>.Action action) where T : IComparable
+        public static SwitchDefaultPipe<T> Default<T>(this SwitchCasePipe<T> pipe, Flow.Pipe<T>.Action action)
         {
-            return Case(pipe, compareValue, action);
-        }
-
-        public static SwitchDefaultPipe<T> Default<T>(this SwitchCasePipe<T> pipe, Flow.Pipe<T>.Action action) where T : IComparable
-        {
-            if (!pipe.Return)
+            if (!pipe.Executed)
             {
-                pipe.Return = true;
+                pipe.Executed = true;
                 if (action != null)
                     action(pipe);
             }
@@ -69,7 +65,7 @@ namespace EifelMono.Extensions
 
         #region Execute
 
-        public static SwitchCasePipe<T> Execute<T>(this SwitchCasePipe<T> pipe, Flow.Pipe<T>.Action action) where T : IComparable
+        public static SwitchCasePipe<T> Execute<T>(this SwitchCasePipe<T> pipe, Flow.Pipe<T>.Action action)
         {
             if (action != null)
                 action(pipe);
@@ -78,97 +74,95 @@ namespace EifelMono.Extensions
 
         #endregion
 
-        #region Bool
+        #region Case Bool
 
-        public static SwitchCasePipe<T> CaseTrue<T>(this SwitchCasePipe<T> pipe, bool doIt, Flow.Pipe<T>.Action action) where T : IComparable
+        public static SwitchCasePipe<T> CaseTrue<T>(this SwitchCasePipe<T> pipe, bool choice, Flow.Pipe<T>.Action action = null)
         {
-            if (pipe.Return)
+            if (pipe.Executed)
                 return pipe;
 
-            if (doIt)
+            pipe.CurrentDecision.CalcDecision(choice, action!= null); 
+            if (action != null && pipe.CurrentDecision.Value)
             {
-                pipe.Return = true;
+                pipe.Executed = true;
                 if (action != null)
                     action(pipe);
             }
             return pipe;
         }
 
-        public static SwitchCasePipe<T> CaseFalse<T>(this SwitchCasePipe<T> pipe, bool doIt, Flow.Pipe<T>.Action action) where T : IComparable
+        public static SwitchCasePipe<T> CaseFalse<T>(this SwitchCasePipe<T> pipe, bool choice, Flow.Pipe<T>.Action action = null)
         {
-            return CaseTrue(pipe, !doIt, action);
-        }
-
-        public static SwitchCasePipe<T> CaseGtr<T>(this SwitchCasePipe<T> pipe, T compareValue, Flow.Pipe<T>.Action action) where T : IComparable
-        {
-            return CaseTrue(pipe, pipe.Value.CompareTo(compareValue) > 0, action);
-        }
-
-        public static SwitchCasePipe<T> CaseGeq<T>(this SwitchCasePipe<T> pipe, T compareValue, Flow.Pipe<T>.Action action) where T : IComparable
-        {
-            return CaseTrue(pipe, pipe.Value.CompareTo(compareValue) >= 0, action);
-        }
-
-        public static SwitchCasePipe<T> CaseLss<T>(this SwitchCasePipe<T> pipe, T compareValue, Flow.Pipe<T>.Action action) where T : IComparable
-        {
-            return CaseTrue(pipe, pipe.Value.CompareTo(compareValue) < 0, action);
-        }
-
-        public static SwitchCasePipe<T> CaseLeq<T>(this SwitchCasePipe<T> pipe, T compareValue, Flow.Pipe<T>.Action action) where T : IComparable
-        {
-            return CaseTrue(pipe, pipe.Value.CompareTo(compareValue) <= 0, action);
+            return CaseTrue(pipe, !choice, action);
         }
 
         #endregion
 
-        #region In
+        #region Case In
 
-        public static SwitchCasePipe<T> CaseIn<T>(this SwitchCasePipe<T> pipe, T[] compareValues, Flow.Pipe<T>.Action action) where T : IComparable
+        public static SwitchCasePipe<T> CaseIn<T>(this SwitchCasePipe<T> pipe, T[] choices, Flow.Pipe<T>.Action action = null)
         {
-            if (pipe.Return)
+            if (pipe.Executed)
                 return pipe;
 
-            if (pipe.Value.In(compareValues))
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.In(choices), action!= null); 
+            if (action != null && pipe.CurrentDecision.Value)
             {
-                pipe.Return = true;
+                pipe.Executed = true;
                 if (action != null)
                     action(pipe);
             }
             return pipe;
         }
 
-        public static SwitchCasePipe<T> CaseIn<T>(this SwitchCasePipe<T> pipe, T compareValue1, T compareValue2, Flow.Pipe<T>.Action action) where T : IComparable
+        public static SwitchCasePipe<T> CaseIn<T>(this SwitchCasePipe<T> pipe, T choice1, T choice2, Flow.Pipe<T>.Action action = null)
         {
-            return CaseIn(pipe, new T[] { compareValue1, compareValue2 }, action);
+            return CaseIn(pipe, new T[] { choice1, choice2 }, action);
         }
 
-        public static SwitchCasePipe<T> CaseIn<T>(this SwitchCasePipe<T> pipe, T compareValue1, T compareValue2, T compareValue3, Flow.Pipe<T>.Action action) where T : IComparable
+        public static SwitchCasePipe<T> CaseIn<T>(this SwitchCasePipe<T> pipe, T choice1, T choice2, T choice3, Flow.Pipe<T>.Action action = null)
         {
-            return CaseIn(pipe, new T[] { compareValue1, compareValue2, compareValue3 }, action);
+            return CaseIn(pipe, new T[] { choice1, choice2, choice3 }, action);
         }
 
-        public static SwitchCasePipe<T> CaseIn<T>(this SwitchCasePipe<T> pipe, T compareValue1, T compareValue2, T compareValue3, T compareValue4, Flow.Pipe<T>.Action action) where T : IComparable
+        public static SwitchCasePipe<T> CaseIn<T>(this SwitchCasePipe<T> pipe, T choice1, T choice2, T choice3, T choice4, Flow.Pipe<T>.Action action = null)
         {
-            return CaseIn(pipe, new T[] { compareValue1, compareValue2, compareValue3, compareValue4 }, action);
+            return CaseIn(pipe, new T[] { choice1, choice2, choice3, choice4 }, action);
         }
 
-        public static SwitchCasePipe<T> CaseIn<T>(this SwitchCasePipe<T> pipe, T compareValue1, T compareValue2, T compareValue3, T compareValue4, T compareValue5, Flow.Pipe<T>.Action action) where T : IComparable
+        public static SwitchCasePipe<T> CaseIn<T>(this SwitchCasePipe<T> pipe, T choice1, T choice2, T choice3, T choice4, T choice5, Flow.Pipe<T>.Action action = null)
         {
-            return CaseIn(pipe, new T[] { compareValue1, compareValue2, compareValue3, compareValue4, compareValue5 }, action);
+            return CaseIn(pipe, new T[] { choice1, choice2, choice3, choice4, choice5 }, action);
         }
 
         #endregion
 
-        #region InRange
+        #region Case In/Out Range
 
-        public static SwitchCasePipe<T> CaseInRange<T>(this SwitchCasePipe<T> pipe, T minValue, T maxValue, Flow.Pipe<T>.Action action) where T : IComparable
+        public static SwitchCasePipe<T> CaseInRange<T>(this SwitchCasePipe<T> pipe, T minChoice, T maxChoice, Flow.Pipe<T>.Action action = null) where T : IComparable
         {
-            if (pipe.Return)
+            if (pipe.Executed)
                 return pipe;
 
-            if (pipe.Value.InRange(minValue, maxValue))
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.InRange(minChoice, maxChoice), action!= null); 
+            if (action != null && pipe.CurrentDecision.Value)
             {
-                pipe.Return = true;
+                pipe.Executed = true;
+                if (action != null)
+                    action(pipe);
+            }
+            return pipe;
+        }
+
+        public static SwitchCasePipe<T> CaseOutRange<T>(this SwitchCasePipe<T> pipe, T minChoice, T maxChoice, Flow.Pipe<T>.Action action) where T : IComparable
+        {
+            if (pipe.Executed)
+                return pipe;
+
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.OutRange(minChoice, maxChoice), action!= null); 
+            if (action != null && pipe.CurrentDecision.Value)
+            {
+                pipe.Executed = true;
                 if (action != null)
                     action(pipe);
             }
@@ -177,16 +171,103 @@ namespace EifelMono.Extensions
 
         #endregion
 
-        #region String
-
-        public static SwitchCasePipe<string> CaseStartsWith(this SwitchCasePipe<string> pipe, string startWith, Flow.Pipe<string>.Action action)
+        #region Operator
+        public static SwitchCasePipe<T> And<T>(this SwitchCasePipe<T> pipe)
         {
-            if (pipe.Return)
+            pipe.CurrentDecision.Operator = Flow.Operator.And;
+            return pipe;
+        }
+
+        #endregion
+
+        #region Case Compareable
+
+        public static SwitchCasePipe<T> CaseGtr<T>(this SwitchCasePipe<T> pipe, T choice, Flow.Pipe<T>.Action action = null) where T : IComparable
+        {
+            return CaseTrue(pipe, pipe.CompareValue.CompareTo(choice) > 0, action);
+        }
+
+        public static SwitchCasePipe<T> CaseGeq<T>(this SwitchCasePipe<T> pipe, T choice, Flow.Pipe<T>.Action action = null) where T : IComparable
+        {
+            return CaseTrue(pipe, pipe.CompareValue.CompareTo(choice) >= 0, action);
+        }
+
+        public static SwitchCasePipe<T> CaseLss<T>(this SwitchCasePipe<T> pipe, T choice, Flow.Pipe<T>.Action action = null) where T : IComparable
+        {
+            return CaseTrue(pipe, pipe.CompareValue.CompareTo(choice) < 0, action);
+        }
+
+        public static SwitchCasePipe<T> CaseLeq<T>(this SwitchCasePipe<T> pipe, T choice, Flow.Pipe<T>.Action action = null) where T : IComparable
+        {
+            return CaseTrue(pipe, pipe.CompareValue.CompareTo(choice) <= 0, action);
+        }
+
+        #endregion
+
+        #region Case string
+
+        public static SwitchCasePipe<string> CaseStartsWith(this SwitchCasePipe<string> pipe, string choice, Flow.Pipe<string>.Action action = null)
+        {
+            if (pipe.Executed)
                 return pipe;
 
-            if (pipe.Value.StartsWith(startWith))
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.StartsWith(choice), action!= null); 
+            if (action != null && pipe.CurrentDecision.Value)
             {
-                pipe.Return = true;
+                pipe.Executed = true;
+                if (action != null)
+                    action(pipe);
+            }
+            return pipe;
+        }
+
+        public static SwitchCasePipe<string> CaseEndsWith(this SwitchCasePipe<string> pipe, string choice, Flow.Pipe<string>.Action action = null)
+        {
+            if (pipe.Executed)
+                return pipe;
+
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.EndsWith(choice), action!= null); 
+            if (action != null && pipe.CurrentDecision.Value)
+            {
+                pipe.Executed = true;
+                if (action != null)
+                    action(pipe);
+            }
+            return pipe;
+        }
+
+        #endregion
+
+        #region Case class
+
+        public static SwitchCasePipe<T> CaseType<T>(this SwitchCasePipe<T> pipe, Type choice, Flow.Pipe<T>.Action action= null) where T: class
+        {
+            if (pipe.Executed)
+                return pipe;
+
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.GetType() == choice, action!= null); 
+            if (action != null && pipe.CurrentDecision.Value)
+            {
+                pipe.Executed = true;
+                if (action != null)
+                    action(pipe);
+            }
+            return pipe;
+        }
+
+        public static SwitchCasePipe<T> CaseIs<T>(this SwitchCasePipe<T> pipe, Type choice, Flow.Pipe<T>.Action action= null) where T: class
+        {
+            if (pipe.Executed)
+                return pipe;
+
+            #if NOPCL
+            pipe.CurrentDecision.CalcDecision(choice.IsAssignableFrom(pipe.CompareValue.GetType())); 
+            #else
+            pipe.CurrentDecision.CalcDecision(choice.GetTypeInfo().IsAssignableFrom(pipe.CompareValue.GetType().GetTypeInfo()), action!= null); 
+            #endif
+            if (action != null && pipe.CurrentDecision.Value)   
+            {
+                pipe.Executed = true;
                 if (action != null)
                     action(pipe);
             }

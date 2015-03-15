@@ -7,29 +7,35 @@ namespace EifelMono.Extensions
     {
         #region In
 
-        public static bool In<T>(this T value, params T[] items) where T : IComparable
+        public static bool In<T>(this T value, params T[] choices) 
         {
-            foreach (var item in items)
-                if (item.Equals(value))
+            foreach (var choice in choices)
+                if (choice.Equals(value))
                     return true;
             return false;
         }
 
-        public static bool In<T>(this T value, IEnumerable<T> items) where T : IComparable
+        public static bool In<T>(this T value, IEnumerable<T> choices) 
         {
-            foreach (var item in items)
-                if (item.Equals(value))
+            foreach (var choice in choices)
+                if (choice.Equals(value))
                     return true;
             return false;
         }
-
+      
         #endregion
 
-        #region InRange
+        #region Range
 
-        public static bool InRange<T>(this T value, T minValue, T maxValue) where T : IComparable
+        public static bool InRange<T>(this T value, T minChoice, T maxChoise) where T : IComparable
         {
-            return value.CompareTo(minValue) >= 0 && value.CompareTo(maxValue) <= 0;
+            return value.CompareTo(minChoice) >= 0 && value.CompareTo(maxChoise) <= 0;
+        }
+
+
+        public static bool OutRange<T>(this T value, T minChoice, T maxChoise) where T : IComparable
+        {
+            return !InRange(value, minChoice, maxChoise);
         }
 
         #endregion

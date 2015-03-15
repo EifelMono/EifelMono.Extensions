@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EifelMono.Extensions
 {
@@ -17,36 +18,86 @@ namespace EifelMono.Extensions
                 And
             }
 
-            public class Pipe<T>
+            public class Decision
             {
-                public T Value = default(T);
+                public bool Value { get; set; }= false;
 
-                public bool Return = false;
-                public bool State = false;
-                public bool First = true;
+                public bool First { get; set; }= true;
 
-                public Flow.Operator Operator = Flow.Operator.Or;
+                public Flow.Operator Operator { get; set; }= Flow.Operator.Or;
 
-                public void InvertOperator()
+                public Flow.Operator PushOperator { get; set; }= Flow.Operator.And;
+
+                public void CalcDecision(bool nextDecision, bool first= false)
                 {
-                    State = !State;
-                }
-
-                public void CalcState(bool value)
-                {
-                    if (First)
-                        State = value;
+                    if (First || first)
+                        Value = nextDecision;
                     else
                         switch (Operator)
                         {
                             case Flow.Operator.Or:
-                                State = State | value;
+                                Value = Value | nextDecision;
                                 break;
                             case Flow.Operator.And:
-                                State = State & value;
+                                Value = Value & nextDecision;
                                 break;
                         }
                     First = false;
+                }
+
+                public void InvertDecision()
+                {
+                    Value = !Value;
+                }
+            }
+
+            public class Pipe<T>
+            {
+                public T CompareValue = default(T);
+
+                public bool Executed { get; set; }= false;
+
+                public List<Decision> Decisisons = new List<Decision>()
+                {
+                    new Decision()
+                };
+
+                public Decision CurrentDecision
+                {
+                    get
+                    {
+                        return Decisisons.Last();
+                    }
+                }
+
+                public void PushDecision(Flow.Operator pushOperator)
+                {
+                    CurrentDecision.PushOperator = pushOperator;
+                    Decisisons.Add(new Decision());
+                }
+
+                public void PopDecision()
+                {
+                    if (Decisisons.Count > 1)
+                    {
+                        Decision lastDecision = Decisisons[Decisisons.Count - 1];
+                        Decisisons.Remove(lastDecision);
+                        switch (CurrentDecision.PushOperator)
+                        {
+                            case Operator.Or:
+                                CurrentDecision.Value = CurrentDecision.Value || lastDecision.Value;
+                                break;
+                            case Operator.And:
+                                CurrentDecision.Value = CurrentDecision.Value && lastDecision.Value;
+                                break;
+                        }
+                    }
+                }
+
+                public void PopDecisions()
+                {
+                    if (Decisisons.Count > 1)
+                        PopDecision();
                 }
 
                 public object Data = null;
@@ -55,14 +106,14 @@ namespace EifelMono.Extensions
             }
         }
 
-        public static T Result<T>(this Flow.Pipe<T> pipe, Flow.Pipe<T>.Action action) where T : IComparable
+        public static T CurrentValue<T>(this Flow.Pipe<T> pipe, Flow.Pipe<T>.Action action) 
         {
             if (action != null)
                 action(pipe);
-            return pipe.Value;
+            return pipe.CompareValue;
         }
 
-        public static T Pipe<T>(this T pipe, Func<T, T> func) where T: struct
+        public static T Pipe<T>(this T pipe, Func<T, T> func) 
         {
             if (func != null)
                 pipe = func(pipe);
