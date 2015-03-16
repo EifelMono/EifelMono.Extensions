@@ -10,16 +10,26 @@ namespace EifelMono.Extensions.Test
         public  void TestIf1()
         {
             int i = 1;
-            int Ok = -1;
+            int result = -1;
 
-            i.If().Is(1).Is(2).AndPush().IsIn(1,2,3,4).Then((p) =>
+            i.If().Is(1).Is(2).AndPush().IsIn(2, 3, 4).Then((p) =>
                 {
-                    Ok = 0;
+                    result = 0;
                 }).Else((p) =>
                 {
-                    Ok = -1;
+                    result = 1;
                 });
-            Assert.IsTrue(Ok == 0);
+            Assert.IsTrue(result == 1);
+
+            result = -1;
+            i.If().Is(1).Is(2).AndPush().IsIn(1, 2, 3, 4).Then((p) =>
+                {
+                    result = 0;
+                }).Else((p) =>
+                {
+                    result = 1;
+                });
+            Assert.IsTrue(result == 0);
         }
     }
 }
