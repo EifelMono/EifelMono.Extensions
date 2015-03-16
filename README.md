@@ -34,5 +34,5 @@ but the performance is a other thing.
     Console.WriteLine("SwitchInt Test={0}", Test);
 
 
-For more see  Samples!
+For more see  Samples and Unit Test
 
