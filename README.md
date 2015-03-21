@@ -91,6 +91,29 @@ but the performance is a other thing.
          Assert.IsTrue(result == 3);
          
       } 
+      
+      {
+      
+         public enum TestEnum
+         {
+            Karl,
+            Heinz,
+            Werner,
+            Egon
+         }
+         
+         TestEnum TestValue= TestEnum.Karl;
+         
+         if (TestValue.In(TestEnum.Karl, TestEnum.Heinz))
+         {
+         }
+         
+         int TestValue= 1;
+         if (TestValue.In(1,2,3))
+         {
+         }
+         
+      }
 
 
 For more see  Samples and Unit Test
