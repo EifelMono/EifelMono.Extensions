@@ -28,9 +28,9 @@ namespace EifelMono.Extensions
 
                 public Flow.Operator PushOperator { get; set; }= Flow.Operator.And;
 
-                public void CalcDecision(bool nextDecision, bool first= false)
+                public void CalcDecision(bool nextDecision)
                 {
-                    if (First || first)
+                    if (First)
                         Value = nextDecision;
                     else
                         switch (Operator)
@@ -102,7 +102,7 @@ namespace EifelMono.Extensions
 
                 public object Data = null;
 
-                public delegate void Action(Pipe<T> r);
+                public delegate void Action(Pipe<T> a);
             }
         }
 

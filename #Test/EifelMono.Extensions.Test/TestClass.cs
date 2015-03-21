@@ -60,15 +60,15 @@ namespace EifelMono.Extensions.Test
         public void TestClass2()
         {
             new ClassA().Switch()
-                .CaseIs(typeof(ClassA), (p) =>
+                .CaseAssignableFrom(typeof(ClassA), (p) =>
                 {
                     Assert.IsTrue(true);
                 })
-                .CaseIs(typeof(ClassB), (p) =>
+                .CaseAssignableFrom(typeof(ClassB), (p) =>
                 {
                     Assert.Fail();
                 })
-                .CaseIs(typeof(ClassC), (p) =>
+                .CaseAssignableFrom(typeof(ClassC), (p) =>
                 {
                     Assert.Fail();
                 })
@@ -79,13 +79,13 @@ namespace EifelMono.Extensions.Test
                 });
             
             new ClassB().Switch()
-                .CaseIs(typeof(ClassA))
+                .CaseAssignableFrom(typeof(ClassA))
                 .And()
-                .CaseIs(typeof(ClassB), (p) =>
+                .CaseAssignableFrom(typeof(ClassB), (p) =>
                 {
                     Assert.IsTrue(true);
                 })
-                .CaseIs(typeof(ClassC), (p) =>
+                .CaseAssignableFrom(typeof(ClassC), (p) =>
                 {
                     Assert.Fail();
                 })
@@ -96,10 +96,10 @@ namespace EifelMono.Extensions.Test
                 });
             
             new ClassC().Switch()
-                .CaseIs(typeof(ClassA))
+                .CaseAssignableFrom(typeof(ClassA))
                 .And()
-                .CaseIs(typeof(ClassB))
-                .CaseIs(typeof(ClassC), (p) =>
+                .CaseAssignableFrom(typeof(ClassB))
+                .CaseAssignableFrom(typeof(ClassC), (p) =>
                 {
                     Assert.IsTrue(true);
                 })

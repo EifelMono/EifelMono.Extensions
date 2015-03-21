@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Samples/SampleBegin/SampleBegin.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pcl/EifelMono.Extensions/Flow/If.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="Pcl/EifelMono.Extensions/Flow/Core.cs" Line="1" Column="1" />
       <File FileName="Samples/SampleBegin/Program.cs" Line="1" Column="1" />
@@ -10,6 +10,11 @@
       <File FileName="Samples/SampleBegin/Properties/AssemblyInfo.cs" Line="1" Column="1" />
       <File FileName="Pcl/EifelMono.Extensions/Flow/If.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

@@ -26,7 +26,11 @@ namespace EifelMono.Extensions
 
         #endregion
 
-        #region If Is
+        #region Execute
+
+        #endregion
+
+        #region If is then else
 
         public static IfLogikPipe<T> If<T>(this T value)  where T : IComparable
         {
@@ -37,13 +41,9 @@ namespace EifelMono.Extensions
 
         public static IfLogikPipe<T> Is<T>(this IfLogikPipe<T> pipe, T choice)
         {
-            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.Equals(choice), false);
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.Equals(choice));
             return pipe;
         }
-
-        #endregion
-
-        #region Then Else
 
         public static IfThenPipe<T> Then<T>(this IfLogikPipe<T> pipe, Flow.Pipe<T>.Action action)
         {
@@ -51,7 +51,6 @@ namespace EifelMono.Extensions
                 return pipe;
             
             pipe.PopDecisions();
-
             if (pipe.CurrentDecision.Value)
             {
                 pipe.Executed = true;
@@ -68,7 +67,6 @@ namespace EifelMono.Extensions
                 return pipe;
 
             pipe.PopDecisions();
-
             if (!pipe.CurrentDecision.Value)
             {
                 pipe.Executed = true;
@@ -80,7 +78,7 @@ namespace EifelMono.Extensions
 
         #endregion
 
-        #region Is Bool
+        #region Is bool
 
         public static IfLogikPipe<T> IsTrue<T>(this IfLogikPipe<T> pipe, bool choice)
         {
@@ -96,7 +94,7 @@ namespace EifelMono.Extensions
 
         #endregion
 
-        #region Is In
+        #region Is in out
 
         public static IfLogikPipe<T> IsIn<T>(this IfLogikPipe<T> pipe, params T[] choices)
         {
@@ -104,9 +102,15 @@ namespace EifelMono.Extensions
             return pipe;
         }
 
+        public static IfLogikPipe<T> IsOut<T>(this IfLogikPipe<T> pipe, params T[] choices)
+        {
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.Out(choices));
+            return pipe;
+        }
+
         #endregion
 
-        #region Is In/Out Range
+        #region Is in out range
 
         public static IfLogikPipe<T> IsInRange<T>(this IfLogikPipe<T> pipe, T minChoice, T maxChoise)  where T : IComparable
         {
@@ -122,17 +126,17 @@ namespace EifelMono.Extensions
 
         #endregion
 
-        #region Operator
-
-        public static IfLogikPipe<T> Or<T>(this IfLogikPipe<T> pipe)
-        {
-            pipe.CurrentDecision.Operator = Flow.Operator.Or;
-            return pipe;
-        }
+        #region Is operator
 
         public static IfLogikPipe<T> And<T>(this IfLogikPipe<T> pipe)
         {
             pipe.CurrentDecision.Operator = Flow.Operator.And;
+            return pipe;
+        }
+
+        public static IfLogikPipe<T> Or<T>(this IfLogikPipe<T> pipe)
+        {
+            pipe.CurrentDecision.Operator = Flow.Operator.Or;
             return pipe;
         }
 
@@ -141,7 +145,6 @@ namespace EifelMono.Extensions
             pipe.CurrentDecision.InvertDecision();
             return pipe;
         }
-
 
         public static IfLogikPipe<T> AndPush<T>(this IfLogikPipe<T> pipe)
         {
@@ -163,7 +166,33 @@ namespace EifelMono.Extensions
 
         #endregion
 
-        #region Is Compareable
+        #region Is comparable
+
+        public static IfLogikPipe<T> CaseEql<T>(this IfLogikPipe<T> pipe, T choice) where T : IComparable
+        {
+            return IsTrue(pipe, pipe.CompareValue.CompareTo(choice) == 0);
+        }
+
+        public static IfLogikPipe<T> CaseGtr<T>(this IfLogikPipe<T> pipe, T choice) where T : IComparable
+        {
+            return IsTrue(pipe, pipe.CompareValue.CompareTo(choice) > 0);
+        }
+
+        public static IfLogikPipe<T> CaseGeq<T>(this IfLogikPipe<T> pipe, T choice) where T : IComparable
+        {
+            return IsTrue(pipe, pipe.CompareValue.CompareTo(choice) >= 0);
+        }
+
+        public static IfLogikPipe<T> CaseLss<T>(this IfLogikPipe<T> pipe, T choice) where T : IComparable
+        {
+            return IsTrue(pipe, pipe.CompareValue.CompareTo(choice) < 0);
+        }
+
+        public static IfLogikPipe<T> CaseLeq<T>(this IfLogikPipe<T> pipe, T choice) where T : IComparable
+        {
+            return IsTrue(pipe, pipe.CompareValue.CompareTo(choice) <= 0);
+        }
+
         #endregion
 
         #region Is string
@@ -190,15 +219,15 @@ namespace EifelMono.Extensions
             return pipe;
         }
 
-        public static SwitchCasePipe<T> IsIs<T>(this SwitchCasePipe<T> pipe, Type choice, Flow.Pipe<T>.Action action) where T: class
+        public static SwitchCasePipe<T> IsAssignableFrom<T>(this SwitchCasePipe<T> pipe, Type choice, Flow.Pipe<T>.Action action) where T: class
         {
             bool flag = false;
             #if NOPCL
             flag= choice.IsAssignableFrom(pipe.CompareValue.GetType());
             #else
-            flag= choice.GetTypeInfo().IsAssignableFrom(pipe.CompareValue.GetType().GetTypeInfo());
+            flag = choice.GetTypeInfo().IsAssignableFrom(pipe.CompareValue.GetType().GetTypeInfo());
             #endif
-            pipe.CurrentDecision.CalcDecision(flag, action!= null);
+            pipe.CurrentDecision.CalcDecision(flag);
             return pipe;
         }
 
