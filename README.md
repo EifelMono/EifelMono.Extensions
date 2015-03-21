@@ -9,27 +9,49 @@ but the performance is a other thing.
 
  	int Test = 1;
 
-    Test.Switch()
-        .Case(2, (p) =>
-        {
-            Console.WriteLine("Case(2, ");
-        })
-        .CaseIn(3, 4, 5, (p) =>
-        {
-            Console.WriteLine("CaseIn(3, 4, 5,");
-        })
-        .CaseInRange(10, 20, (p) =>
-        {
-            Console.WriteLine("CaseInRange(19, 20,");
-        })
-        .CaseTrue(DateTime.Now.Second == 4711, (p) =>
-        {
-            Console.WriteLine("CaseTrue(xxx,");
-        })
-        .Default((p) =>
-        {
-            Console.WriteLine("SwitchInt Default(");
-        });
+   int TestValue = 1;
+   int result = -1;
+   TestValue.Switch()
+    .Case(2, (p) =>
+    {
+     result = 0;
+    })
+    .CaseIn(3, 4, 5, (p) =>
+    {
+     result = 1;
+    })
+    .CaseInRange(10, 20, (p) =>
+    {
+     result = 2;
+    })
+    .Default((p) =>
+    {
+     result = 10;
+    });
+    Assert.IsTrue(result == 10);
+    
+    int TestValue = 1;
+    int result = -1;
+    TestValue.Switch()
+     .Case(1, (p) =>
+     {
+      result++;
+      p.Continue();
+     })
+     .CaseIn(1, 2, 3, 4, (p) =>
+     {
+      result++;
+      p.Continue();
+     })
+     .CaseInRange(1, 10, (p) =>
+     {
+      result++;
+     })
+     .Default((p) =>
+     {
+      result += 10;
+     });
+     Assert.IsTrue(result == 2);
 
     Console.WriteLine("SwitchInt Test={0}", Test);
 
