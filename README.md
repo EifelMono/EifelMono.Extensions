@@ -57,7 +57,40 @@ but the performance is a other thing.
          });
       Assert.IsTrue(result == 2);
       
-    }
+   }
+    
+   {
+   
+      string TestValue = "Hugo";
+      int result = -1;
+      TestValue.Switch()
+         .Case("Bob", (p) =>
+         {
+            result = 0;
+         })
+         .CaseIn("Ben", "Leo", (p) =>
+         {
+            result = 1;
+         })
+         .CaseStartsWith("Hu")
+         .And()
+         .CaseStartsWith("O", (p) =>
+         {
+            result = 2;
+         })
+         .CaseStartsWith("Hug")
+         .And()
+         .CaseEndsWith("o", (p) =>
+         {
+            result = 3;
+         })
+         .Default((p) =>
+         {
+            result += 10;
+         });
+         Assert.IsTrue(result == 3);
+         
+      } 
 
 
 For more see  Samples and Unit Test
