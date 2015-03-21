@@ -74,7 +74,7 @@ but the performance is an other thing.
          })
          .CaseStartsWith("Hu")
          .And()
-         .CaseStartsWith("O", (p) =>
+         .CaseEndsWith("O", (p) =>
          {
             result = 2;
          })
