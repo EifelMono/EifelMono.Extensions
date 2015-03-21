@@ -7,8 +7,6 @@ but the performance is a other thing.
 
 <H3>Sample Switch!</H3>
 
- 	int Test = 1;
-
    int TestValue = 1;
    int result = -1;
    TestValue.Switch()
