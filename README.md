@@ -8,6 +8,7 @@ but the performance is a other thing.
 <H3>Sample Switch!</H3>
 
    {
+   
       int TestValue = 1;
       int result = -1;
       TestValue.Switch()
@@ -28,9 +29,11 @@ but the performance is a other thing.
             result = 10;
          });
       Assert.IsTrue(result == 10);
+      
    }
     
    {
+   
       int TestValue = 1;
       int result = -1;
       TestValue.Switch()
@@ -53,6 +56,7 @@ but the performance is a other thing.
             result += 10;
          });
       Assert.IsTrue(result == 2);
+      
     }
 
 
