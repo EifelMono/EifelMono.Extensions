@@ -8,7 +8,6 @@ but the performance is a other thing.
 <H3>Sample Switch!</H3>
 
    {
-   
       int TestValue = 1;
       int result = -1;
       TestValue.Switch()
@@ -54,9 +53,7 @@ but the performance is a other thing.
             result += 10;
          });
       Assert.IsTrue(result == 2);
-     }
-
-    Console.WriteLine("SwitchInt Test={0}", Test);
+    }
 
 
 For more see  Samples and Unit Test
