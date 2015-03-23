@@ -5,10 +5,11 @@ For your info it is better readable
 but the performance is an other thing.
 
 
+
 <H3>Sample Switch!</H3>
 
+```csharp
    {
-   
       int TestValue = 1;
       int result = -1;
       TestValue.Switch()
@@ -29,11 +30,9 @@ but the performance is an other thing.
             result = 10;
          });
       Assert.IsTrue(result == 10);
-      
    }
     
    {
-   
       int TestValue = 1;
       int result = -1;
       TestValue.Switch()
@@ -56,11 +55,9 @@ but the performance is an other thing.
             result += 10;
          });
       Assert.IsTrue(result == 2);
-      
    }
     
    {
-   
       string TestValue = "Hugo";
       int result = -1;
       TestValue.Switch()
@@ -89,11 +86,9 @@ but the performance is an other thing.
             result += 10;
          });
          Assert.IsTrue(result == 3);
-         
    } 
       
    {
-      
       public enum TestEnum
       {
          Karl,
@@ -107,14 +102,15 @@ but the performance is an other thing.
       if (TestValue.In(TestEnum.Karl, TestEnum.Heinz))
       {
       }
-         
+   }
+   
+   {
       int TestValue= 1;
       if (TestValue.In(1,2,3))
       {
       }
-         
    }
-
+```
 
 <h4>For more see  Samples and Unit Test</h4>
 
