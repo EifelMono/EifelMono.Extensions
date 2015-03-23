@@ -9,6 +9,10 @@ but the performance is an other thing.
 <H3>Sample Switch!</H3>
 
 ```csharp
+   using EifelMono.Extensions;
+   
+   :
+   
    {
       int TestValue = 1;
       int result = -1;
@@ -32,6 +36,8 @@ but the performance is an other thing.
       Assert.IsTrue(result == 10);
    }
     
+   :
+   
    {
       int TestValue = 1;
       int result = -1;
@@ -56,7 +62,9 @@ but the performance is an other thing.
          });
       Assert.IsTrue(result == 2);
    }
-    
+   
+   :
+   
    {
       string TestValue = "Hugo";
       int result = -1;
@@ -87,6 +95,8 @@ but the performance is an other thing.
          });
          Assert.IsTrue(result == 3);
    } 
+   
+   :
       
    {
       public enum TestEnum
@@ -103,6 +113,8 @@ but the performance is an other thing.
       {
       }
    }
+   
+   :
    
    {
       int TestValue= 1;
