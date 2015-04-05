@@ -74,7 +74,7 @@ namespace EifelMono.Extensions.Test
                 })
                 .CaseStartsWith("Hu")
                 .And()
-                .CaseStartsWith("O", (p) =>
+                .CaseEndsWith("O", (p) =>
                 {
                     result = 2;
                 })

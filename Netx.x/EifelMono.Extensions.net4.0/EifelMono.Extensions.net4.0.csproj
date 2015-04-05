@@ -51,11 +51,24 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Numerical\Double.cs">
+      <Link>Numerical\Double.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Numerical\Float.cs">
+      <Link>Numerical\Float.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Numerical\Int.cs">
+      <Link>Numerical\Int.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\Invoke.cs">
+      <Link>Flow\Invoke.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Flow\" />
     <Folder Include="Properties\" />
     <Folder Include="..\EifelMono.Extensions.net4.5\Properties\" />
+    <Folder Include="Numerical\" />
   </ItemGroup>
 </Project>

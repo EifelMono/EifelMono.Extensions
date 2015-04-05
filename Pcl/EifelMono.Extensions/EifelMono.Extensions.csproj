@@ -36,6 +36,13 @@
     <Compile Include="Flow\String.cs" />
     <Compile Include="Flow\Switch.cs" />
     <Compile Include="Flow\Core.cs" />
+    <Compile Include="Numerical\Double.cs" />
+    <Compile Include="Numerical\Int.cs" />
+    <Compile Include="Numerical\Float.cs" />
+    <Compile Include="Flow\Invoke.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Numerical\" />
+  </ItemGroup>
 </Project>

@@ -106,14 +106,14 @@ namespace EifelMono.Extensions
             }
         }
 
-        public static T CurrentValue<T>(this Flow.Pipe<T> pipe, Flow.Pipe<T>.Action action) 
+        public static T CurrentValue<T>(this Flow.Pipe<T> pipe, Flow.Pipe<T>.Action action)
         {
             if (action != null)
                 action(pipe);
             return pipe.CompareValue;
         }
 
-        public static T Pipe<T>(this T pipe, Func<T, T> func) 
+        public static T Pipe<T>(this T pipe, Func<T, T> func)
         {
             if (func != null)
                 pipe = func(pipe);
