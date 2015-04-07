@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace EifelMono.Extensions
 {
@@ -209,6 +210,25 @@ namespace EifelMono.Extensions
             return pipe;
         }
 
+        public static IfLogikPipe<string> IsRegexMatch(this IfLogikPipe<string> pipe, string match, RegexOptions regexOptions= RegexOptions.None)
+        {
+            pipe.CurrentDecision.CalcDecision(Regex.Match(match, pipe.CompareValue, regexOptions).Success); 
+            return pipe;
+        }
+
+        public static IfLogikPipe<string> IsNull(this IfLogikPipe<string> pipe)
+        {
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue== null);
+            return pipe;
+        }
+
+        public static IfLogikPipe<string> IsNullOrEmpty(this IfLogikPipe<string> pipe)
+        {
+            pipe.CurrentDecision.CalcDecision(string.IsNullOrEmpty(pipe.CompareValue));
+            return pipe;
+        }
+
+
         #endregion
 
         #region Is class
@@ -229,6 +249,51 @@ namespace EifelMono.Extensions
             #endif
             pipe.CurrentDecision.CalcDecision(flag);
             return pipe;
+        }
+
+        public static IfLogikPipe<T> IsNull<T>(this IfLogikPipe<T> pipe) where T: class
+        {
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue== null);
+            return pipe;
+        }
+
+        public static IfLogikPipe<T> IsNotNull<T>(this IfLogikPipe<T> pipe) where T: class
+        {
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue!= null);
+            return pipe;
+        }
+
+        /// <summary>
+        /// Determines if is pattern matching the specified pipe choice. c# 7.0
+        /// </summary>
+        /// <returns><c>true</c> if is pattern matching the specified pipe choice; otherwise, <c>false</c>.</returns>
+        /// <param name="pipe">Pipe.</param>
+        /// <param name="choice">Choice.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
+        /// <typeparam name="TO">The 2nd type parameter.</typeparam>
+        public static IfLogikPipe<T> IsPatternMatching<T, TO>(this IfLogikPipe<T> pipe, Func<TO, bool> choice) where TO: class
+        {
+            TO O = pipe.CompareValue as TO;
+
+            if (O == null)
+                return pipe;
+
+            pipe.CurrentDecision.CalcDecision(choice(O)); 
+            return pipe;
+        }
+
+        /// <summary>
+        /// Determines if is pa ma the specified pipe choice. c# 7.0
+        /// Determines if is pattern matching the specified pipe choice. c# 7.0
+        /// </summary>
+        /// <returns><c>true</c> if is pa ma the specified pipe choice; otherwise, <c>false</c>.</returns>
+        /// <param name="pipe">Pipe.</param>
+        /// <param name="choice">Choice.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
+        /// <typeparam name="TO">The 2nd type parameter.</typeparam>
+        public static IfLogikPipe<T> IsPaMa<T, TO>(this IfLogikPipe<T> pipe, Func<TO, bool> choice) where TO: class
+        {
+            return IsPatternMatching(pipe, choice);
         }
 
         #endregion

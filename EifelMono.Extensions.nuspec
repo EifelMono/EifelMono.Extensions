@@ -13,7 +13,7 @@
         <summary />
         <releaseNotes>THE BEGIN</releaseNotes>
         <copyright>Use it or lose it!</copyright>
-        <tags>In InRange Switch Case Default CaseIn CaseInRange If Is Then Else IsIn IsInRange And Or Pipe</tags>
+        <tags>In InRange Switch Case Default CaseIn CaseInRange If Is Then Else IsIn IsInRange And Or Pipe Pattern Machting</tags>
     </metadata>
     <files>
         <file src="Netx.x/EifelMono.Extensions.net3.5/bin/Release/EifelMono.Extensions.dll" target="lib/net35/EifelMono.Extensions.dll" />

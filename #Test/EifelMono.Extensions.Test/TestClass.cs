@@ -14,19 +14,19 @@ namespace EifelMono.Extensions.Test
 
         public class ClassA
         {
-            
+            public string A { get; set; }= "A";
         }
 
 
         public class ClassB: ClassA
         {
-            
+            public string B { get; set; }= "B";
         }
 
 
         public class ClassC: ClassB
         {
-            
+            public string C { get; set; }= "C";
         }
 
 
@@ -108,6 +108,76 @@ namespace EifelMono.Extensions.Test
                     Assert.Fail();
 
                 });
+        }
+
+        [Test()]
+        public void TestClass3()
+        {
+            ClassC TestValue = new ClassC();
+
+            TestValue.Switch()
+                .CasePatternMatching<ClassC, ClassA>((o) =>
+                {
+                    return true;
+                }, (p, o) =>
+                {
+                    Debug.WriteLine("o.A={0}", o.A);
+                    p.Continue();
+                })
+                .CasePatternMatching<ClassC, ClassB>((o) =>
+                {
+                    return true;
+                }, (p, o) =>
+                {
+                    Debug.WriteLine("o.A={0}", o.A);
+                    Debug.WriteLine("o.B={0}", o.B);
+                    p.Continue();
+                })
+                .CasePatternMatching<ClassC, ClassC>((o) =>
+                {
+                    return true;
+                }, (p, o) =>
+                {
+                    Debug.WriteLine("o.A={0}", o.A);
+                    Debug.WriteLine("o.B={0}", o.B);
+                    Debug.WriteLine("o.C={0}", o.C);
+                    p.Continue();
+                });
+        }
+
+        [Test()]
+        public void TestClass4()
+        {
+            ClassB TestValue = new ClassB();
+
+            TestValue.Switch()
+                .CasePatternMatching<ClassB, ClassA>((o) =>
+                    {
+                        return true;
+                    }, (p, o) =>
+                    {
+                        Debug.WriteLine("o.A={0}", o.A);
+                        p.Continue();
+                    })
+                .CasePatternMatching<ClassB, ClassB>((o) =>
+                    {
+                        return true;
+                    }, (p, o) =>
+                    {
+                        Debug.WriteLine("o.A={0}", o.A);
+                        Debug.WriteLine("o.B={0}", o.B);
+                        p.Continue();
+                    })
+                .CasePatternMatching<ClassB, ClassC>((o) =>
+                    {
+                        return true;
+                    }, (p, o) =>
+                    {
+                        Debug.WriteLine("o.A={0}", o.A);
+                        Debug.WriteLine("o.B={0}", o.B);
+                        Debug.WriteLine("o.C={0}", o.C);
+                        p.Continue();
+                    });
         }
     }
 }
