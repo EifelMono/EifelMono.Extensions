@@ -419,6 +419,5 @@ namespace EifelMono.Extensions
         #endregion
 
         #endregion
-
     }
 }

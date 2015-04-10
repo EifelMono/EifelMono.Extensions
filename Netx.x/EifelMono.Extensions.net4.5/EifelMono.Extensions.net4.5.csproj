@@ -37,12 +37,6 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\If.cs">
       <Link>Flow\If.cs</Link>
     </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\In.cs">
-      <Link>Flow\In.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\Position.cs">
-      <Link>Flow\Position.cs</Link>
-    </Compile>
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\String.cs">
       <Link>Flow\String.cs</Link>
     </Compile>
@@ -63,6 +57,12 @@
     </Compile>
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\Invoke.cs">
       <Link>Flow\Invoke.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\Generic.cs">
+      <Link>Flow\Generic.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\Delphi.cs">
+      <Link>Flow\Delphi.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace EifelMono.Extensions
 {
@@ -26,7 +27,7 @@ namespace EifelMono.Extensions
 
             public new delegate void Action(SwitchCasePipe<T> a);
 
-            public new delegate void Action<T1>(SwitchCasePipe<T> a,T1 o);
+            public delegate void Action<T1>(SwitchCasePipe<T> a,T1 o);
         }
 
         #endregion
@@ -404,7 +405,7 @@ namespace EifelMono.Extensions
             return ExecuteCaseAction(pipe, action);
         }
 
-          public static SwitchCasePipe<T> CaseIsNotNull<T>(this SwitchCasePipe<T> pipe, SwitchCasePipe<T>.Action action = null) where T: class
+        public static SwitchCasePipe<T> CaseIsNotNull<T>(this SwitchCasePipe<T> pipe, SwitchCasePipe<T>.Action action = null) where T: class
         {
             if (pipe.Executed)
                 return pipe;
@@ -422,17 +423,20 @@ namespace EifelMono.Extensions
         /// <param name="action">Action.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
         /// <typeparam name="TO">The 2nd type parameter.</typeparam>
-        public static SwitchCasePipe<T> CasePatternMatching<T, TO>(this SwitchCasePipe<T> pipe, Func<TO, bool> choice, SwitchCasePipe<T>.Action<TO> action = null) where TO: class
+        public static SwitchCasePipe<T> CaseOn<T, TOn>(this SwitchCasePipe<T> pipe, Func<TOn, bool> choice, SwitchCasePipe<T>.Action<TOn> action = null) where T: class where TOn: class
         {
             if (pipe.Executed)
                 return pipe;
 
-            TO O = pipe.CompareValue as TO;
+            TOn On = pipe.CompareValue as TOn;
 
-            if (O == null)
+            if (On == null)
                 return pipe;
 
-            pipe.CurrentDecision.CalcDecision(choice(O)); 
+            if (choice != null)
+                pipe.CurrentDecision.CalcDecision(choice(On));
+            else
+                pipe.CurrentDecision.CalcDecision(true); 
 
             if (action != null)
             {
@@ -441,30 +445,66 @@ namespace EifelMono.Extensions
                 {
                     pipe.Executed = true;
                     if (action != null)
-                        action(pipe, O);
+                        action(pipe, On);
                 }
                 pipe.CurrentDecision.First = true;
             }
             return pipe;
         }
 
-        /// <summary>
-        /// Cases the pa ma. c# 7.0
-        /// Cases the pattern matching. ?  c# 7.0 
-        /// </summary>
-        /// <returns>The pa ma.</returns>
-        /// <param name="pipe">Pipe.</param>
-        /// <param name="choice">Choice.</param>
-        /// <param name="action">Action.</param>
-        /// <typeparam name="T">The 1st type parameter.</typeparam>
-        /// <typeparam name="TO">The 2nd type parameter.</typeparam>
-        public static SwitchCasePipe<T> CasePaMa<T, TO>(this SwitchCasePipe<T> pipe, Func<TO, bool> choice, SwitchCasePipe<T>.Action<TO> action = null) where TO: class
+        public static SwitchCasePipe<T> CaseOn<T, TOn>(this SwitchCasePipe<T> pipe, SwitchCasePipe<T>.Action<TOn> action) where T: class where TOn: class
         {
-            return CasePatternMatching(pipe, choice, action);
+            return CaseOn(pipe, null, action);
         }
 
+        #endregion
 
+        #region object
 
+        public static SwitchCasePipe<object> CaseOn<TOn>(this SwitchCasePipe<object> pipe, Func<TOn, bool> choice, SwitchCasePipe<object>.Action<TOn> action = null)
+        {   
+            if (pipe.Executed)
+                return pipe;
+
+            bool ok = true;
+            TOn On = default(TOn);
+            try
+            {
+                On = (TOn)Convert.ChangeType(pipe.CompareValue, typeof(TOn));
+            }
+            catch (Exception ex)
+            {
+                ok = false;
+                Debug.WriteLine(ex);
+            }
+
+            if (On == null | !ok)
+                return pipe;
+
+            if (choice != null)
+                pipe.CurrentDecision.CalcDecision(choice(On));
+            else
+                pipe.CurrentDecision.CalcDecision(true); 
+
+            if (action != null)
+            {
+                pipe.PopDecisions();
+                if (pipe.CurrentDecision.Value)
+                {
+                    pipe.Executed = true;
+                    if (action != null)
+                        action(pipe, On);
+                }
+                pipe.CurrentDecision.First = true;
+            }
+           
+            return pipe;
+        }
+
+        public static SwitchCasePipe<object> CaseOn<TOn>(this SwitchCasePipe<object> pipe, SwitchCasePipe<object>.Action<TOn> action)
+        {
+            return CaseOn(pipe, null, action);
+        }
 
         #endregion
     }

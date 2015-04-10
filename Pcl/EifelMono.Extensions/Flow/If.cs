@@ -271,29 +271,18 @@ namespace EifelMono.Extensions
         /// <param name="choice">Choice.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
         /// <typeparam name="TO">The 2nd type parameter.</typeparam>
-        public static IfLogikPipe<T> IsPatternMatching<T, TO>(this IfLogikPipe<T> pipe, Func<TO, bool> choice) where TO: class
+        public static IfLogikPipe<T> IsOn<T, TOn>(this IfLogikPipe<T> pipe, Func<TOn, bool> choice = null) where TOn: class
         {
-            TO O = pipe.CompareValue as TO;
+            TOn On = pipe.CompareValue as TOn;
 
-            if (O == null)
+            if (On == null)
                 return pipe;
 
-            pipe.CurrentDecision.CalcDecision(choice(O)); 
+            if (choice!= null)
+                pipe.CurrentDecision.CalcDecision(choice(On));
+            else
+                pipe.CurrentDecision.CalcDecision(true);
             return pipe;
-        }
-
-        /// <summary>
-        /// Determines if is pa ma the specified pipe choice. c# 7.0
-        /// Determines if is pattern matching the specified pipe choice. c# 7.0
-        /// </summary>
-        /// <returns><c>true</c> if is pa ma the specified pipe choice; otherwise, <c>false</c>.</returns>
-        /// <param name="pipe">Pipe.</param>
-        /// <param name="choice">Choice.</param>
-        /// <typeparam name="T">The 1st type parameter.</typeparam>
-        /// <typeparam name="TO">The 2nd type parameter.</typeparam>
-        public static IfLogikPipe<T> IsPaMa<T, TO>(this IfLogikPipe<T> pipe, Func<TO, bool> choice) where TO: class
-        {
-            return IsPatternMatching(pipe, choice);
         }
 
         #endregion
