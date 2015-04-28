@@ -63,7 +63,7 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\Delphi.cs">
       <Link>Flow\Delphi.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\..\..\UoLGit\EifelMono.Extensions\Pcl\EifelMono.Extensions\Flow\Select.cs">
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\Select.cs">
       <Link>Flow\Select.cs</Link>
     </Compile>
   </ItemGroup>
