@@ -40,6 +40,7 @@
     <Compile Include="Flow\Invoke.cs" />
     <Compile Include="Flow\Generic.cs" />
     <Compile Include="Flow\Delphi.cs" />
+    <Compile Include="Flow\Select.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

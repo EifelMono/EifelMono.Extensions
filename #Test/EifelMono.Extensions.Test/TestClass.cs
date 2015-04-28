@@ -9,9 +9,6 @@ namespace EifelMono.Extensions.Test
     [TestFixture()]
     public class TestClass
     {
-
-    
-
         public class ClassA
         {
             public string A { get; set; }= "A";
@@ -28,7 +25,6 @@ namespace EifelMono.Extensions.Test
         {
             public string C { get; set; }= "C";
         }
-
 
         [Test()]
         public void TestClass1()
@@ -91,7 +87,6 @@ namespace EifelMono.Extensions.Test
                 })
                 .Default((p) =>
                 {
-                    Assert.Fail();
 
                 });
             
@@ -109,102 +104,6 @@ namespace EifelMono.Extensions.Test
 
                 });
         }
-
-        [Test()]
-        public void TestClass3()
-        {
-            ClassC TestValue = new ClassC();
-
-            TestValue.Switch()
-                .CaseOn<ClassC, ClassA>((o) =>
-                {
-                    return true;
-                }, (p, o) =>
-                {
-                    Debug.WriteLine("o.A={0}", o.A);
-                    p.Continue();
-                })
-                .CaseOn<ClassC, ClassB>((o) =>
-                {
-                    return true;
-                }, (p, o) =>
-                {
-                    Debug.WriteLine("o.A={0}", o.A);
-                    Debug.WriteLine("o.B={0}", o.B);
-                    p.Continue();
-                })
-                .CaseOn<ClassC, ClassC>((o) =>
-                {
-                    return true;
-                }, (p, o) =>
-                {
-                    Debug.WriteLine("o.A={0}", o.A);
-                    Debug.WriteLine("o.B={0}", o.B);
-                    Debug.WriteLine("o.C={0}", o.C);
-                    p.Continue();
-                });
-        }
-
-        [Test()]
-        public void TestClass4()
-        {
-            ClassB TestValue = new ClassB();
-
-            TestValue.Switch()
-                .CaseOn<ClassB, ClassA>((o) =>
-                {
-                    return true;
-                }, (p, o) =>
-                {
-                    Debug.WriteLine("o.A={0}", o.A);
-                    p.Continue();
-                })
-                .CaseOn<ClassB, ClassB>((o) =>
-                {
-                    return true;
-                }, (p, o) =>
-                {
-                    Debug.WriteLine("o.A={0}", o.A);
-                    Debug.WriteLine("o.B={0}", o.B);
-                    p.Continue();
-                })
-                .CaseOn<ClassB, ClassC>((o) =>
-                {
-                    return true;
-                }, (p, o) =>
-                {
-                    Debug.WriteLine("o.A={0}", o.A);
-                    Debug.WriteLine("o.B={0}", o.B);
-                    Debug.WriteLine("o.C={0}", o.C);
-                    p.Continue();
-                });
-        }
-
-
-        [Test()]
-        public void TestClass5()
-        {
-            object TestValue = "Hallo";
-
-            TestValue.Switch()
-                .CaseOn<ClassA>((o) =>
-                {
-                    return true;
-                }, (p, o) =>
-                {
-                    Debug.WriteLine("o.A={0}", o.A);
-                    p.Continue();
-                })
-                .CaseOn<string>((o) =>
-                {
-                    return true;
-                }, (p, o) =>
-                {
-                    Debug.WriteLine("o.A={0}", o);
-                    p.Continue();
-                });
-        }
-           
     }
 }
 

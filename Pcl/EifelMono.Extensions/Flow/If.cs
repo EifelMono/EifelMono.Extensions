@@ -239,17 +239,17 @@ namespace EifelMono.Extensions
             return pipe;
         }
 
-        public static SwitchCasePipe<T> IsAssignableFrom<T>(this SwitchCasePipe<T> pipe, Type choice, Flow.Pipe<T>.Action action) where T: class
-        {
-            bool flag = false;
-            #if NOPCL
-            flag= choice.IsAssignableFrom(pipe.CompareValue.GetType());
-            #else
-            flag = choice.GetTypeInfo().IsAssignableFrom(pipe.CompareValue.GetType().GetTypeInfo());
-            #endif
-            pipe.CurrentDecision.CalcDecision(flag);
-            return pipe;
-        }
+//        public static SwitchCasePipe<T> IsAssignableFrom<T>(this SwitchCasePipe<T> pipe, Type choice, Flow.Pipe<T>.Action action) where T: class
+//        {
+//            bool flag = false;
+//            #if NOPCL
+//            flag= choice.IsAssignableFrom(pipe.CompareValue.GetType());
+//            #else
+//            flag = choice.GetTypeInfo().IsAssignableFrom(pipe.CompareValue.GetType().GetTypeInfo());
+//            #endif
+//            pipe.CurrentDecision.CalcDecision(flag);
+//            return pipe;
+//        }
 
         public static IfLogikPipe<T> IsNull<T>(this IfLogikPipe<T> pipe) where T: class
         {

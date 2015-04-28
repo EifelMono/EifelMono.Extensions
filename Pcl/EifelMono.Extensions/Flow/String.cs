@@ -16,10 +16,10 @@ namespace EifelMono.Extensions
 
         #region InContains
 
-        public static bool InContains(this string value, IEnumerable<string>  choices)
+        public static bool InContains(this string value, IEnumerable<string> choices)
         {
             foreach (var choice in choices)
-                if (choice.Contains(value))
+                if (value.Contains(choice))
                     return true;
             return false;
         }
@@ -29,12 +29,11 @@ namespace EifelMono.Extensions
             return InContains(value, choices as IEnumerable<string>);
         }
 
-        public static bool InContains(this IEnumerable<string> values, IEnumerable<string>  choices)
+        public static bool InContains(this IEnumerable<string> values, IEnumerable<string> choices)
         {
             foreach (var value in values)
-                foreach (var choice in choices)
-                    if (choice.Contains(value))
-                        return true;
+                if (value.InContains(choices))
+                    return true;
             return false;
         }
 
@@ -45,35 +44,11 @@ namespace EifelMono.Extensions
 
         #endregion
 
-        #region OutContains
-
-        public static bool OutContains(this string value, IEnumerable<string> choices)
-        {
-            return !InContains(value, choices);
-        }
-
-        public static bool OutContains(this string value, params string[] choices)
-        {
-            return !InContains(value, choices);
-        }
-
-        public static bool OutContains(this IEnumerable<string> values, IEnumerable<string>  choices)
-        {
-            return !InContains(values, choices);
-        }
-
-        public static bool OutContains(this IEnumerable<string> values, params string[] choices)
-        {
-            return !InContains(values, choices);
-        }
-
-        #endregion
-
         #region InStartsWith
 
         public static bool InStartsWith(this string value, IEnumerable<string>  choices)
         {
-            foreach (var choice in choices)
+            foreach (string choice in choices)
                 if (value.StartsWith(choice))
                     return true;
             return false;
@@ -87,9 +62,8 @@ namespace EifelMono.Extensions
         public static bool InStartsWith(this IEnumerable<string> values, IEnumerable<string> choices)
         {
             foreach (var value in values)
-                foreach (var choice in choices)
-                    if (value.StartsWith(choice))
-                        return true;
+                if (value.InStartsWith(choices))
+                    return true;
             return false;
         }
 
@@ -100,7 +74,7 @@ namespace EifelMono.Extensions
 
         #endregion
 
-        #region InInEndsWith
+        #region InEndsWith
 
         public static bool InEndsWith(this string value, IEnumerable<string> choices)
         {
@@ -118,15 +92,44 @@ namespace EifelMono.Extensions
         public static bool InEndsWith(this IEnumerable<string> values, IEnumerable<string> choices)
         {
             foreach (var value in values)
-                foreach (var choice in choices)
-                    if (value.EndsWith(choice))
-                        return true;
+                if (value.InEndsWith(choices))
+                    return true;
             return false;
         }
 
         public static bool InEndsWith(this IEnumerable<string> values, params string[] choices)
         {
             return InEndsWith(values, choices as IEnumerable<string>);
+        }
+
+        #endregion
+
+        #region InLength
+
+        public static bool InLength(this string value, IEnumerable<int> choices)
+        {
+            foreach (var choice in choices)
+                if (value.Length == choice)
+                    return true;
+            return false;
+        }
+
+        public static bool InLength(this string value, params int[] choices)
+        {
+            return InLength(value, choices as IEnumerable<int>);
+        }
+
+        public static bool InLength(this IEnumerable<string> values, IEnumerable<int> choices)
+        {
+            foreach (var value in values)
+                if (value.InLength(choices))
+                    return true;
+            return false;
+        }
+
+        public static bool InLength(this IEnumerable<string> values, params int[] choices)
+        {
+            return InLength(values, choices as IEnumerable<int>);
         }
 
         #endregion

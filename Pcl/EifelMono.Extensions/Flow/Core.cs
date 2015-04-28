@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace EifelMono.Extensions
 {
@@ -54,6 +55,12 @@ namespace EifelMono.Extensions
             public class Pipe<T>
             {
                 public T CompareValue = default(T);
+
+                #if NOPCL
+                public Type CompareValueType;
+                #else
+                public TypeInfo CompareValueType;
+                #endif
 
                 public bool Executed { get; set; }= false;
 
