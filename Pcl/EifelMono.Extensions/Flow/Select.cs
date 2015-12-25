@@ -106,7 +106,7 @@ namespace EifelMono.Extensions
 
             Action<TOn> executeDependCaseAction = (onObject) =>
             {
-                pipe.CurrentDecision.CalcDecision(choice(onObject));
+                pipe.CurrentDecision.CalcDecision(choice  == null ? true : choice(onObject));
                 if (action != null)
                 {
                     pipe.PopDecisions();

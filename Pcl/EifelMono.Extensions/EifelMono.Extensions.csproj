@@ -31,19 +31,20 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Flow\If.cs" />
-    <Compile Include="Flow\String.cs" />
     <Compile Include="Flow\Switch.cs" />
     <Compile Include="Flow\Core.cs" />
-    <Compile Include="Numerical\Double.cs" />
-    <Compile Include="Numerical\Int.cs" />
-    <Compile Include="Numerical\Float.cs" />
-    <Compile Include="Flow\Invoke.cs" />
-    <Compile Include="Flow\Generic.cs" />
-    <Compile Include="Flow\Delphi.cs" />
     <Compile Include="Flow\Select.cs" />
+    <Compile Include="Type\String\String.cs" />
+    <Compile Include="Type\Numerical\Double.cs" />
+    <Compile Include="Type\Numerical\Float.cs" />
+    <Compile Include="Type\Numerical\Int.cs" />
+    <Compile Include="Type\Delphi.cs" />
+    <Compile Include="Type\Generic.cs" />
+    <Compile Include="Delegate\Invoke.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Numerical\" />
+    <Folder Include="Type\" />
+    <Folder Include="Delegate\" />
   </ItemGroup>
 </Project>

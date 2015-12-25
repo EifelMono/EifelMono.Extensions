@@ -390,6 +390,37 @@ namespace EifelMono.Extensions
 
         #endregion
 
+        #region Case Numerical
+
+        public static SwitchCasePipe<int> CaseInRangeOffset(this SwitchCasePipe<int> pipe, int basevalue, int offset, SwitchCasePipe<int>.Action action = null)
+        {
+            if (pipe.Executed)
+                return pipe;
+
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.InRangeOffset(basevalue, offset)); 
+            return ExecuteSwitchCaseAction(pipe, action);
+        }
+
+        public static SwitchCasePipe<float> CaseInRangeOffset(this SwitchCasePipe<float> pipe, float basevalue, float offset, SwitchCasePipe<float>.Action action = null)
+        {
+            if (pipe.Executed)
+                return pipe;
+
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.InRangeOffset(basevalue, offset)); 
+            return ExecuteSwitchCaseAction(pipe, action);
+        }
+
+        public static SwitchCasePipe<double> CaseInRangeOffset(this SwitchCasePipe<double> pipe, double basevalue, double offset, SwitchCasePipe<double>.Action action = null)
+        {
+            if (pipe.Executed)
+                return pipe;
+
+            pipe.CurrentDecision.CalcDecision(pipe.CompareValue.InRangeOffset(basevalue, offset)); 
+            return ExecuteSwitchCaseAction(pipe, action);
+        }
+
+        #endregion
+
         #region Case class
 
         public static SwitchCasePipe<T> CaseType<T>(this SwitchCasePipe<T> pipe, Type choice, SwitchCasePipe<T>.Action action = null) where T: class
