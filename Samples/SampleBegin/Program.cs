@@ -7,6 +7,8 @@ namespace SampleBegin
     {
         public static void Main(string[] args)
         {
+            Log.Proxy = new LogProxyConsole();
+
             #region In
             InInt();
             InString();
@@ -17,10 +19,13 @@ namespace SampleBegin
             SwitchString();
             #endregion
 
+            #region Other
+            LogAll();
+            #endregion
+
             Console.WriteLine("Ready");
             Console.ReadLine();
         }
-
 
         #region In
 
@@ -49,8 +54,6 @@ namespace SampleBegin
         }
 
         #endregion
-
-
 
         #region Switch
 
@@ -83,7 +86,6 @@ namespace SampleBegin
             Console.WriteLine("SwitchInt Test={0}", Test);
         }
 
-
         public static void SwitchString()
         {
             string Test = "Karl";
@@ -113,6 +115,28 @@ namespace SampleBegin
             Console.WriteLine("SwitchString Test={0}", Test);
         }
 
+        #endregion
+
+        #region Log
+        static void LogAll()
+        {
+            try 
+            {
+                var j= 0;
+                var i= 1/j;
+                Console.WriteLine (i);
+            }
+            catch (Exception ex)
+            {
+                ex.LogException();
+            }
+
+            Log.Try(()=> {
+                var j= 0;
+                var i= 1/j;
+                Console.WriteLine (i);
+            });
+        }
         #endregion
 
     }

@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using EifelMono.Extensions;
 using System.Runtime.CompilerServices;
-using System.ServiceModel;
 
 namespace EifelMono.Extensions
 {
@@ -34,7 +33,7 @@ namespace EifelMono.Extensions
             WriteLine(logType, callerInfos + text);
         }
 
-        private void WriteLine(Log.Type logType, string format, params object[] args)
+        protected virtual void WriteLine(Log.Type logType, string format, params object[] args)
         {
             string prefix = logType.ToString() + ":";
             if (logType == Log.Type.WriteLine)

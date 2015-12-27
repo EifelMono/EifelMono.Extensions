@@ -122,7 +122,29 @@ but the performance is an other thing.
       {
       }
    }
-```
+
+   :
+
+   {
+
+	  try 
+      {
+      	var j= 0;
+        var i= 1/j;
+        Console.WriteLine (i);
+      }
+      catch (Exception ex)
+      {
+      	ex.LogException();
+      }
+
+      Log.Try(()=> {
+      	var j= 0;
+        var i= 1/j;
+        Console.WriteLine (i);
+      });
+
+   }
 
 <h4>For more see  Samples and Unit Test</h4>
 
