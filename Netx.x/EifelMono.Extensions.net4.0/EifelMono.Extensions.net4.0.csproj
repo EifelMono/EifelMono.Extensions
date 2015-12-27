@@ -83,5 +83,8 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DotNet40.cs" />
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Log\LogProxyConsole.cs">
+      <Link>Log\LogProxyConsole.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>

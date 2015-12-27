@@ -144,6 +144,55 @@ namespace EifelMono.Extensions
 
         #endregion
 
+        #region CaseOnEqual
+
+        public static SelectCasePipe<object> CaseOnEqual<TOn>(this SelectCasePipe<object> pipe, Func<TOn, bool> choice, SelectCasePipe<object>.Action<TOn> action = null)
+        {   
+            if (pipe.Executed)
+                return pipe;
+
+            #if NOPCL
+            var onType = typeof(TOn);
+            #else
+            var onType = typeof(TOn).GetTypeInfo();     
+            #endif
+
+            Action<TOn> executeDependCaseAction = (onObject) =>
+                {
+                    pipe.CurrentDecision.CalcDecision(choice  == null ? true : choice(onObject));
+                    if (action != null)
+                    {
+                        pipe.PopDecisions();
+                        if (pipe.CurrentDecision.Value)
+                        {
+                            pipe.Executed = true;
+                            if (action != null)
+                                action(pipe, onObject);
+                        }
+                        pipe.CurrentDecision.First = true;
+                    } 
+                };
+
+            try
+            {
+                if (pipe.CompareValueType.FullName == onType.FullName)
+                    executeDependCaseAction((TOn)Convert.ChangeType(pipe.CompareValue, typeof(TOn)));
+            }
+            catch (Exception ex)
+            {
+                ex.LogException();
+            }
+
+            return pipe;
+        }
+
+        public static SelectCasePipe<object> CaseOnEqual<TOn>(this SelectCasePipe<object> pipe, SelectCasePipe<object>.Action<TOn> action)
+        {
+            return CaseOnEqual(pipe, null, action);
+        }
+
+        #endregion
+
         #region Case Bool
 
         public static SelectCasePipe<object> CaseTrue(this SelectCasePipe<object> pipe, bool choice, SelectCasePipe<object>.Action action = null)

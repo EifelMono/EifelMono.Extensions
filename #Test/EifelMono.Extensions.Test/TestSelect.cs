@@ -149,34 +149,122 @@ namespace EifelMono.Extensions.Test
 
             TestValue.Select()
                 .CaseOn<ClassA>((p, o) =>
-                    {
-                        Debug.WriteLine("o.A={0}", o.A);
-                        p.Continue();
-                    })
+                {
+                    Debug.WriteLine("o.A={0}", o.A);
+                    p.Continue();
+                })
                 .CaseOn<string>((p, o) =>
-                    {
-                        Debug.WriteLine("o={0}", o);
-                        p.Continue();
-                    })
+                {
+                    Debug.WriteLine("o={0}", o);
+                    p.Continue();
+                })
                 .CaseOn<int>((p, o) =>
-                    {
-                        Debug.WriteLine("o={0}", o);
-                        p.Continue();
-                    })
+                {
+                    Debug.WriteLine("o={0}", o);
+                    p.Continue();
+                })
                 .CaseOn<double>((p, o) =>
-                    {
-                        Debug.WriteLine("o={0}", o);
-                        p.Continue();
-                    })
+                {
+                    Debug.WriteLine("o={0}", o);
+                    p.Continue();
+                })
                 .CaseOn<bool>((p, o) =>
-                    {
-                        Debug.WriteLine("o={0}", o);
-                        p.Continue();
-                    })
+                {
+                    Debug.WriteLine("o={0}", o);
+                    p.Continue();
+                })
                 .Default((p) =>
-                    {
-                        Debug.WriteLine("Default");
-                    });
+                {
+                    Debug.WriteLine("Default");
+                });
+        }
+
+        [Test()]
+        public void TestObject4()
+        {
+            var TestValue = new ClassC();
+
+            if (TestValue is ClassA)
+                Debug.WriteLine("ClassA");
+            if (TestValue is ClassB)
+                Debug.WriteLine("ClassB");
+            if (TestValue is ClassC)
+                Debug.WriteLine("ClassC");
+
+            int count = 0;
+
+            TestValue.Select()
+                .CaseOn<ClassA>(
+                (p, o) =>
+                {
+                    Debug.WriteLine("o.A={0}", o.A);
+                    p.Continue();
+                    count += 1;
+                })
+                .CaseOn<ClassB>(
+                (p, o) =>
+                {
+                    Debug.WriteLine("o.A={0}", o.A);
+                    Debug.WriteLine("o.B={0}", o.B);
+                    p.Continue();
+                    count += 10;
+                })
+                .CaseOn<ClassC>((p, o) =>
+                {
+                    Debug.WriteLine("o.A={0}", o.A);
+                    Debug.WriteLine("o.B={0}", o.B);
+                    Debug.WriteLine("o.C={0}", o.C);
+                    count += 100;
+                })
+                .Default((p) =>
+                {
+                    Debug.WriteLine("Default");
+                    count += 1000;
+                });
+            Assert.IsTrue(count == 111);
+        }
+
+        [Test()]
+        public void TestObject5()
+        {
+            var TestValue = new ClassC();
+
+            if (TestValue is ClassA)
+                Debug.WriteLine("ClassA");
+            if (TestValue is ClassB)
+                Debug.WriteLine("ClassB");
+            if (TestValue is ClassC)
+                Debug.WriteLine("ClassC");
+
+            int count = 0;
+
+            TestValue.Select()
+                .CaseOnEqual<ClassA>(
+                (p, o) =>
+                {
+                    Debug.WriteLine("o.A={0}", o.A);
+                    count += 1;
+                })
+                .CaseOnEqual<ClassB>(
+                (p, o) =>
+                {
+                    Debug.WriteLine("o.A={0}", o.A);
+                    Debug.WriteLine("o.B={0}", o.B);
+                    count += 10;
+                })
+                .CaseOnEqual<ClassC>((p, o) =>
+                {
+                    Debug.WriteLine("o.A={0}", o.A);
+                    Debug.WriteLine("o.B={0}", o.B);
+                    Debug.WriteLine("o.C={0}", o.C);
+                    count += 100;
+                })
+                .Default((p) =>
+                {
+                    Debug.WriteLine("Default");
+                    count += 1000;
+                });
+            Assert.IsTrue(count == 100);
         }
 
     }

@@ -33,13 +33,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LogProxyConsole.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\Pcl\EifelMono.Extensions\EifelMono.Extensions.csproj">
-      <Project>{99FAD7E0-CE47-4C47-9A81-8F147C402C31}</Project>
-      <Name>EifelMono.Extensions</Name>
+    <ProjectReference Include="..\..\Netx.x\EifelMono.Extensions.net4.5\EifelMono.Extensions.net4.5.csproj">
+      <Project>{4D26DC5E-FAF4-4395-8AD8-2F3C22A0F44D}</Project>
+      <Name>EifelMono.Extensions.net4.5</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

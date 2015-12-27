@@ -118,25 +118,32 @@ namespace SampleBegin
         #endregion
 
         #region Log
+
         static void LogAll()
         {
-            try 
+            try
             {
-                var j= 0;
-                var i= 1/j;
-                Console.WriteLine (i);
+                var j = 0;
+                var i = 1 / j;
+                Console.WriteLine(i);
             }
             catch (Exception ex)
             {
                 ex.LogException();
             }
 
-            Log.Try(()=> {
-                var j= 0;
-                var i= 1/j;
-                Console.WriteLine (i);
-            });
+            Log.Try(() =>
+                {
+                    var j = 0;
+                    var i = 1 / j;
+                    Console.WriteLine(i);
+                });
+
+            "Log.Message".LogMessage();
+            "Log.Flow".LogFlow();
+            string.Format("Hallo {0}", 1).LogHint();
         }
+
         #endregion
 
     }

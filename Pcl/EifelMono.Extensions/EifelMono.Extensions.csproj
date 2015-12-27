@@ -16,7 +16,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -27,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <DefineConstants>PCL</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -45,6 +46,7 @@
     <Compile Include="Flow\FlowExtensions.If.cs" />
     <Compile Include="Flow\FlowExtensions.Select.cs" />
     <Compile Include="Flow\FlowExtensions.Switch.cs" />
+    <Compile Include="Log\LogProxyConsole.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
