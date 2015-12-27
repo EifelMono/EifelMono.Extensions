@@ -19,6 +19,7 @@ namespace EifelMono.Extensions
             Warning,
             Flow,
             Communication,
+            WriteLine,
         }
 
         public static ILogProxy Proxy = new LogProxyDebug();
@@ -65,6 +66,12 @@ namespace EifelMono.Extensions
         public static void Communication(string text, [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = -1, [CallerMemberName] string memberName = "")
         {
             Text(Type.Communication, text, filePath, lineNumber, memberName);
+        }
+
+        public static void WriteLine(string format, object[] args)
+        {
+            if (format != null)
+                Text(Type.WriteLine, string.Format(format, args));
         }
 
         #endregion

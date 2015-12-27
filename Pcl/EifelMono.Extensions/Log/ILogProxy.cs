@@ -10,7 +10,7 @@ namespace EifelMono.Extensions
 
         void Exception(Exception ex, string format, object[] args);
 
-        void Text(Log.Type type, string text, string filePath, int lineNumber, string memberName);
+        void Text(Log.Type logType, string text, string filePath, int lineNumber, string memberName);
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using EifelMono.Extensions;
 using System.Runtime.CompilerServices;
+using System.ServiceModel;
 
 namespace EifelMono.Extensions
 {
@@ -22,21 +23,26 @@ namespace EifelMono.Extensions
             string prefix = "";
             if (!string.IsNullOrEmpty(format))
                 prefix = string.Format(format, args) + " ";
-            Format(Log.Type.Exception, prefix + ex.ToString());
+            WriteLine(Log.Type.Exception, prefix + ex.ToString());
         }
 
-        public void Text(Log.Type type, string text, string filePath, int lineNumber, string memberName)
+        public void Text(Log.Type logType, string text, string filePath, int lineNumber, string memberName)
         {
-            Format(type, CallerInfos(filePath, lineNumber, memberName) + text);
+            string callerInfos = CallerInfos(filePath, lineNumber, memberName);
+            if (logType == Log.Type.WriteLine)
+                callerInfos = "";
+            WriteLine(logType, callerInfos + text);
         }
 
-        private void Format(Log.Type type, string format, params object[] args)
+        private void WriteLine(Log.Type logType, string format, params object[] args)
         {
+            string prefix = logType.ToString() + ":";
+            if (logType == Log.Type.WriteLine)
+                prefix = "";
             if (args.Length == 0)
-                Debug.WriteLine(type.ToString() + ":" + format);
+                Debug.WriteLine(prefix + format);
             else
-                Debug.WriteLine(type.ToString() + ":" + string.Format(format, args));
-        
+                Debug.WriteLine(prefix + string.Format(format, args));
         }
 
         protected string CallerInfos(string filePath, int lineNumber, string memberName)
