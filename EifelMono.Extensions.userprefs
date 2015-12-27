@@ -6,28 +6,8 @@
       <File FileName="Pcl/EifelMono.Extensions/Properties/AssemblyInfo.cs" Line="1" Column="1" />
       <File FileName="Samples/SampleBegin/Properties/AssemblyInfo.cs" Line="1" Column="1" />
       <File FileName="Pcl/EifelMono.Extensions/Flow/If.cs" Line="1" Column="1" />
+      <File FileName="Pcl/EifelMono.Extensions/Type/Delphi.cs" Line="1" Column="1" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State name="__root__">
-          <Node name="EifelMono.Extensions" expanded="True">
-            <Node name="#Test" expanded="True">
-              <Node name="EifelMono.Extensions.Test" expanded="True">
-                <Node name="EifelMono" expanded="True">
-                  <Node name="Extensions" expanded="True">
-                    <Node name="Test" expanded="True">
-                      <Node name="TestSelect" expanded="True">
-                        <Node name="TestObject1" selected="True" />
-                      </Node>
-                    </Node>
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>

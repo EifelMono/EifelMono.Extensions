@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EifelMono.Extensions
 {
-    public static partial class StringExtensions
+    public static class StringExtensions
     {
         #region ...
 
@@ -187,6 +187,24 @@ namespace EifelMono.Extensions
         {
             int pos = value.IndexOf(search);
             return pos != -1 ? value.Substring(0, pos - search.Length + 1) : "";
+        }
+
+        public static string LastBefore(this string value, string search)
+        {
+            int pos = value.LastIndexOf(search);
+            return pos != -1 ? value.Substring(0, pos - search.Length + 1) : "";
+        }
+
+        public static string After(this string value, string search)
+        {
+            int pos = value.IndexOf(search);
+            return pos != -1 ? value.Substring(pos + 1) : "";
+        }
+
+        public static string LastAfter(this string value, string search)
+        {
+            int pos = value.LastIndexOf(search);
+            return pos != -1 ? value.Substring(pos + 1) : "";
         }
 
         #endregion

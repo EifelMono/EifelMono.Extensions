@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace EifelMono.Extensions
 {
-    public static partial class TypeExtensions
+    public static class GenericExtensions
     {
         #region In
 
@@ -158,7 +158,7 @@ namespace EifelMono.Extensions
 
         #region As
 
-        public static IEnumerable<T> AsOrEmpty<T>(this object value)where T: class
+        public static IEnumerable<T> AsOrEmpty<T>(this object value) where T: class
         {
             T t = value as T;
             if (t != null)

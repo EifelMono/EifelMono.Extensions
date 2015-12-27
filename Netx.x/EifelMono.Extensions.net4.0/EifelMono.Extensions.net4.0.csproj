@@ -29,50 +29,59 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Delegate\Invoke.cs">
-      <Link>Delegate\Invoke.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\Core.cs">
-      <Link>Flow\Core.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\If.cs">
-      <Link>Flow\If.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\Select.cs">
-      <Link>Flow\Select.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\Switch.cs">
-      <Link>Flow\Switch.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\Delphi.cs">
-      <Link>Type\Delphi.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\Generic.cs">
-      <Link>Type\Generic.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\Numerical\Double.cs">
-      <Link>Type\Numerical\Double.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\Numerical\Float.cs">
-      <Link>Type\Numerical\Float.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\Numerical\Int.cs">
-      <Link>Type\Numerical\Int.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\String\String.cs">
-      <Link>Type\String\String.cs</Link>
-    </Compile>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Properties\" />
-    <Folder Include="..\EifelMono.Extensions.net4.5\Properties\" />
-    <Folder Include="Delegate\" />
-    <Folder Include="Flow\" />
-    <Folder Include="Type\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Log\ILogProxy.cs">
+      <Link>Log\ILogProxy.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Log\Log.cs">
+      <Link>Log\Log.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Log\LogExtensions.cs">
+      <Link>Log\LogExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Log\LogProxyDebug.cs">
+      <Link>Log\LogProxyDebug.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\DelphiExtensions.cs">
+      <Link>Type\DelphiExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\GenericExtensions.cs">
+      <Link>Type\GenericExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\InvokeExtenions.cs">
+      <Link>Type\InvokeExtenions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\StringExtensions.cs">
+      <Link>Type\StringExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\NumericalExtensions\NumericalExtensions.Double.cs">
+      <Link>Type\NumericalExtensions\NumericalExtensions.Double.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\NumericalExtensions\NumericalExtensions.Float.cs">
+      <Link>Type\NumericalExtensions\NumericalExtensions.Float.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\NumericalExtensions\NumericalExtensions.Int.cs">
+      <Link>Type\NumericalExtensions\NumericalExtensions.Int.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\FlowExtensions.Core.cs">
+      <Link>Flow\FlowExtensions.Core.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\FlowExtensions.If.cs">
+      <Link>Flow\FlowExtensions.If.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\FlowExtensions.Select.cs">
+      <Link>Flow\FlowExtensions.Select.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\FlowExtensions.Switch.cs">
+      <Link>Flow\FlowExtensions.Switch.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="DotNet40.cs" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 
 namespace EifelMono.Extensions
 {
-    public static partial class TypeExtensions
+    public static class DelphiExtensions
     {
         #region ...
 

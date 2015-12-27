@@ -30,21 +30,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Flow\If.cs" />
-    <Compile Include="Flow\Switch.cs" />
-    <Compile Include="Flow\Core.cs" />
-    <Compile Include="Flow\Select.cs" />
-    <Compile Include="Type\String\String.cs" />
-    <Compile Include="Type\Numerical\Double.cs" />
-    <Compile Include="Type\Numerical\Float.cs" />
-    <Compile Include="Type\Numerical\Int.cs" />
-    <Compile Include="Type\Delphi.cs" />
-    <Compile Include="Type\Generic.cs" />
-    <Compile Include="Delegate\Invoke.cs" />
+    <Compile Include="Log\ILogProxy.cs" />
+    <Compile Include="Log\Log.cs" />
+    <Compile Include="Log\LogProxyDebug.cs" />
+    <Compile Include="Log\LogExtensions.cs" />
+    <Compile Include="Type\GenericExtensions.cs" />
+    <Compile Include="Type\DelphiExtensions.cs" />
+    <Compile Include="Type\InvokeExtenions.cs" />
+    <Compile Include="Type\StringExtensions.cs" />
+    <Compile Include="Type\NumericalExtensions\NumericalExtensions.Double.cs" />
+    <Compile Include="Type\NumericalExtensions\NumericalExtensions.Int.cs" />
+    <Compile Include="Type\NumericalExtensions\NumericalExtensions.Float.cs" />
+    <Compile Include="Flow\FlowExtensions.Core.cs" />
+    <Compile Include="Flow\FlowExtensions.If.cs" />
+    <Compile Include="Flow\FlowExtensions.Select.cs" />
+    <Compile Include="Flow\FlowExtensions.Switch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Type\" />
-    <Folder Include="Delegate\" />
+    <Folder Include="Log\" />
   </ItemGroup>
 </Project>
