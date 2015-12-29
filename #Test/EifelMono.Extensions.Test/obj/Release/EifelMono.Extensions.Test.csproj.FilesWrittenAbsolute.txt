@@ -1,6 +1,0 @@
-/Users/andreas/Documents/Development/github/EifelMono.Extensions/#Test/EifelMono.Extensions.Test/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/Users/andreas/Documents/Development/github/EifelMono.Extensions/#Test/EifelMono.Extensions.Test/bin/Release/EifelMono.Extensions.Test.dll.mdb
-/Users/andreas/Documents/Development/github/EifelMono.Extensions/#Test/EifelMono.Extensions.Test/bin/Release/EifelMono.Extensions.Test.dll
-/Users/andreas/Documents/Development/github/EifelMono.Extensions/#Test/EifelMono.Extensions.Test/obj/Release/EifelMono.Extensions.Test.dll
-/Users/andreas/Documents/Development/github/EifelMono.Extensions/#Test/EifelMono.Extensions.Test/obj/Release/EifelMono.Extensions.Test.dll.mdb
-/Users/andreas/Documents/Development/github/EifelMono.Extensions/#Test/EifelMono.Extensions.Test/bin/Release/EifelMono.Extensions.dll
