@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>EifelMono.Extensions</id>
+        <version>0.0.0</version>
+        <title>Extentsions for your flow</title>
+        <authors>eifelmono@klapperich.de</authors>
+        <owners>eifelmono</owners>
+        <licenseUrl>https://github.com/EifelMono/EifelMono.Extensions/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/EifelMono/EifelMono.Extensions</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Extension Methods If, Switch, Select, In, InRange, Log and more</description>
+        <summary />
+        <releaseNotes>THE BEGIN</releaseNotes>
+        <copyright>Use it or lose it!</copyright>
+        <tags>In InRange Switch Select Case Default CaseIn CaseInRange If Is Then Else IsIn IsInRange And Or Pipe Pattern Machting Log</tags>
+    </metadata>
+    <files>
+        <file src="Netx.x/EifelMono.Extensions.net4.0/bin/Release/EifelMono.Extensions.dll" target="lib/net40/EifelMono.Extensions.dll" />
+        <file src="Netx.x/EifelMono.Extensions.net4.5/bin/Release/EifelMono.Extensions.dll" target="lib/net45/EifelMono.Extensions.dll" />
+        <file src="Pcl/EifelMono.Extensions/bin/Release/EifelMono.Extensions.dll" target="lib/portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10/EifelMono.Extensions.dll" />
+    </files>
+</package>

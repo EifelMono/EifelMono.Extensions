@@ -78,6 +78,10 @@ namespace EifelMono.Extensions
 
         #region Try....
 
+        /// <summary>
+        /// Only for Log Exception with CatchExceptionVisible
+        /// </summary>
+        /// <param name="ex">Ex.</param>
         public static void CatchException(Exception ex)
         {
             if (Proxy != null && Proxy.CatchExceptionVisible)
