@@ -140,7 +140,8 @@ publish/
 # but database connection strings (with potential passwords) will be unencrypted
 *.pubxml
 *.publishproj
-
+# nuspec because this is generated from nuspec.xml
+EifelMono.Extensions.nuspec
 # NuGet Packages
 *.nupkg
 # The packages folder can be ignored because of Package Restore
