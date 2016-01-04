@@ -2,8 +2,7 @@
 
 <H2>Sample Switch</H2>
 
-For your info it is better readable  
-but the performance is an other thing.
+For your info it is better readable but the performance is an other thing.
 ```c#
    using EifelMono.Extensions;
    
