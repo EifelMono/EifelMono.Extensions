@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace EifelMono.Extensions
 {
@@ -149,34 +151,32 @@ namespace EifelMono.Extensions
 
         #region Dot...
 
-        public static string DotPart(this string value, int index, int range = 1)
+        public static string DotPart(this string value, bool dir = true, int index = 0, int range = 1)
         {
             if (string.IsNullOrEmpty(value))
                 return "";
             var items = value.Split('.');
-            switch (index)
-            {
-            // First
-                case -1:
-                    return items.Length > 0 ? items[0] : "";
-            // Last
-                case -2:
-                    return items.Length > 0 ? items[items.Length - 1] : "";
-            }
+
             string result = "";
-            for (int i = index; i < index + 1; i++)
-                result += (i == index ? "" : ".") + items[i];
+            int pos = dir ? 0 + index : items.Length - index - range;
+            for (int i = index; i < index + range; i++)
+            {
+                if (pos.InRange(0, items.Length - 1))
+                    result += (result.Length == 0 ? "" : ".") + items[pos];
+                pos++;
+            }
+               
             return result;
         }
 
-        public static string DotFirst(this string value)
+        public static string DotFirst(this string value, int range = 1)
         {
-            return value.DotPart(-1);
+            return value.DotPart(true, 0, range);
         }
 
-        public static string DotLast(this string value)
+        public static string DotLast(this string value, int range = 1)
         {
-            return value.DotPart(-2);
+            return value.DotPart(false, 0, range);
         }
 
         #endregion
@@ -209,9 +209,10 @@ namespace EifelMono.Extensions
 
         #endregion
 
-
-
-
+        public static string UrlCombine(this string url, params string[] paths)
+        {
+            return url.TrimEnd('/') + '/' + paths.Aggregate(
+                (furl, path) => string.Format("{0}/{1}", furl.TrimEnd('/'), path.TrimStart('/').TrimEnd('/'))).TrimStart('/').TrimEnd('/');
+        }
     }
 }
-
