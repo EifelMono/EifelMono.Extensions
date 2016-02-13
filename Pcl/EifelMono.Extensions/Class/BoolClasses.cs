@@ -33,7 +33,7 @@ namespace EifelMono.Extensions
         }
     }
 
-    public class First<T>: First
+    public class First<T>: First where T: IComparable
     {
         public First()
         {
@@ -58,7 +58,25 @@ namespace EifelMono.Extensions
 
         public T Value { get; set; }
 
-      
+        public bool IsFirstOrEqlValue(T value, bool setValue = true)
+        {
+            bool result = false;
+            if (IsFirst || Value.CompareTo(value) == 0)
+                result = true;
+            if (setValue)
+                Value = value;
+            return result;
+        }
+
+        public bool IsFirstOrNotEqlValue(T value, bool setValue = true)
+        {
+            bool result = false;
+            if (IsFirst || Value.CompareTo(value) != 0)
+                result = true;
+            if (setValue)
+                Value = value;
+            return result;
+        }
     }
 }
 
