@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using EifelMono.Extensions;
+using System.Security.Policy;
 
 namespace EifelMono.Extensions.Test
 {
