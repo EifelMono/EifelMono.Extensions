@@ -86,5 +86,8 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Log\LogProxyConsole.cs">
       <Link>Log\LogProxyConsole.cs</Link>
     </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Class\BoolClasses.cs">
+      <Link>Class\BoolClasses.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>

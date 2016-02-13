@@ -47,10 +47,12 @@
     <Compile Include="Flow\FlowExtensions.Select.cs" />
     <Compile Include="Flow\FlowExtensions.Switch.cs" />
     <Compile Include="Log\LogProxyConsole.cs" />
+    <Compile Include="Class\BoolClasses.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Type\" />
     <Folder Include="Log\" />
+    <Folder Include="Class\" />
   </ItemGroup>
 </Project>
