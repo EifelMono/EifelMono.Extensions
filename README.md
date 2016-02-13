@@ -269,5 +269,53 @@ For your info it is better readable but the performance is an other thing.
    }
 ```
 
+<H2>Sample First</H2>
+ 
+```c#
+   {
+       
+       public enum StatusBarStyle
+       {
+            Normal,
+            Translucent,
+            Dark,
+            Light
+       }
+    
+       bool CurrentStatusBarStyleFirst = true;
+       StatusBarStyle CurrentStatusBarStyle = StatusBarStyle.Normale;
+       StatusBarStyle NewStatusBarStyle = StatusBarStyle.Normale;
+       
+       if (First || CurrentStatusBarStyle!=NewStatusBarStyle)
+       {
+           First= false;
+           CurrentStatusBarStyle= NewStatusBarStyle;
+           
+           switch (CurrentStatusBarStyle)
+           {
+               case StatusBarStyle.Normal:
+                    break;
+               :
+           }
+       }
+       
+       First<StatusBarStyle> CurrentStatusBarStyle = new First<StatusBarStyle>(StatusBarStyle.Normale);
+       StatusBarStyle NewStatusBarStyle = StatusBarStyle.Normale;
+       
+       if (CurrentStatusBarStyle.IsFirstOrNotEqual(NewStatusBarStyle))
+       {
+           switch (CurrentStatusBarStyle.Value)
+           {
+               case StatusBarStyle.Normal:
+                    break;
+               :
+           }
+       }
+       
+       
+  	 
+   }
+```
+
 <h3>For more see Sample and Unit Test</h3>
 

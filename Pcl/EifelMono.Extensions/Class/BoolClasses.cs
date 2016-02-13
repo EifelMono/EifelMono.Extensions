@@ -58,6 +58,12 @@ namespace EifelMono.Extensions
 
         public T Value { get; set; }
 
+        /// <summary>
+        /// Determines whether this instance is first or eql value the specified value setValue.
+        /// </summary>
+        /// <returns><c>true</c> if this instance is first or eql value the specified value setValue; otherwise, <c>false</c>.</returns>
+        /// <param name="value">Value.</param>
+        /// <param name="setValue">If set to <c>true</c> set value.</param>
         public bool IsFirstOrEqlValue(T value, bool setValue = true)
         {
             bool result = false;
@@ -68,6 +74,12 @@ namespace EifelMono.Extensions
             return result;
         }
 
+        /// <summary>
+        /// Determines whether this instance is first or not eql value the specified value setValue.
+        /// </summary>
+        /// <returns><c>true</c> if this instance is first or not eql value the specified value setValue; otherwise, <c>false</c>.</returns>
+        /// <param name="value">Value.</param>
+        /// <param name="setValue">If set to <c>true</c> set value.</param>
         public bool IsFirstOrNotEqlValue(T value, bool setValue = true)
         {
             bool result = false;
