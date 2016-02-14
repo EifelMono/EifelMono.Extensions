@@ -59,12 +59,12 @@ namespace EifelMono.Extensions
         public T Value { get; set; }
 
         /// <summary>
-        /// Determines whether this instance is first or eql value the specified value setValue.
+        /// Determines whether this instance is first or equal value the specified value setValue.
         /// </summary>
-        /// <returns><c>true</c> if this instance is first or eql value the specified value setValue; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if this instance is first or equal value the specified value setValue; otherwise, <c>false</c>.</returns>
         /// <param name="value">Value.</param>
         /// <param name="setValue">If set to <c>true</c> set value.</param>
-        public bool IsFirstOrEqlValue(T value, bool setValue = true)
+        public bool IsFirstOrEqual(T value, bool setValue = true)
         {
             bool result = false;
             if (IsFirst || Value.CompareTo(value) == 0)
@@ -75,12 +75,12 @@ namespace EifelMono.Extensions
         }
 
         /// <summary>
-        /// Determines whether this instance is first or not eql value the specified value setValue.
+        /// Determines whether this instance is first or not equal value the specified value setValue.
         /// </summary>
-        /// <returns><c>true</c> if this instance is first or not eql value the specified value setValue; otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if this instance is first or not equal value the specified value setValue; otherwise, <c>false</c>.</returns>
         /// <param name="value">Value.</param>
         /// <param name="setValue">If set to <c>true</c> set value.</param>
-        public bool IsFirstOrNotEqlValue(T value, bool setValue = true)
+        public bool IsFirstOrNotEqual(T value, bool setValue = true)
         {
             bool result = false;
             if (IsFirst || Value.CompareTo(value) != 0)

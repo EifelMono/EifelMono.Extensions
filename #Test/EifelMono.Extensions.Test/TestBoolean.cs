@@ -62,7 +62,6 @@ namespace EifelMono.Extensions.Test
             Assert.IsTrue(string.IsNullOrEmpty(running.DefaultValue));
         }
 
-
         [Test()]
         public void TestBoolean3()
         {
@@ -108,17 +107,17 @@ namespace EifelMono.Extensions.Test
 
             running.Reset(true);
 
-            Assert.IsTrue(running.IsFirstOrEqlValue("abcdef"));
+            Assert.IsTrue(running.IsFirstOrEqual("abcdef"));
             Assert.IsTrue(running.Value== "abcdef");
-            Assert.IsTrue(running.IsFirstOrEqlValue("abcdef"));
+            Assert.IsTrue(running.IsFirstOrEqual("abcdef"));
             Assert.IsTrue(running.Value== "abcdef");
-            Assert.IsFalse(running.IsFirstOrEqlValue("abcd"));
+            Assert.IsFalse(running.IsFirstOrEqual("abcd"));
             Assert.IsTrue(running.Value== "abcd");
-            Assert.IsFalse(running.IsFirstOrEqlValue("abcde", false));
+            Assert.IsFalse(running.IsFirstOrEqual("abcde", false));
             Assert.IsTrue(running.Value== "abcd");
-            Assert.IsTrue(running.IsFirstOrNotEqlValue("abcdef", false));
+            Assert.IsTrue(running.IsFirstOrNotEqual("abcdef", false));
             Assert.IsTrue(running.Value== "abcd");
-            Assert.IsFalse(running.IsFirstOrNotEqlValue("abcd", true));
+            Assert.IsFalse(running.IsFirstOrNotEqual("abcd", true));
             Assert.IsTrue(running.Value== "abcd");
 
         }

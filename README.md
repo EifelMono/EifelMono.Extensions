@@ -5,9 +5,7 @@
 For your info it is better readable but the performance is an other thing.
 ```c#
    using EifelMono.Extensions;
-   
    :
-   
    {
        int TestValue = 1;
        int result = -1;
@@ -30,9 +28,7 @@ For your info it is better readable but the performance is an other thing.
            });
        Assert.IsTrue(result == 10);
    }
-    
    :
-   
    {
        int TestValue = 1;
        int result = -1;
@@ -57,9 +53,7 @@ For your info it is better readable but the performance is an other thing.
            });
        Assert.IsTrue(result == 2);
    }
-   
    :
-   
    {
        string TestValue = "Hugo";
        int result = -1;
@@ -153,9 +147,7 @@ For your info it is better readable but the performance is an other thing.
            });
        Assert.IsTrue(count == 111);
    }
-   
    :
-   
    {
 	   public class ClassA
        {
@@ -224,21 +216,26 @@ For your info it is better readable but the performance is an other thing.
            Werner,
            Egon
        }
-         
        TestEnum TestValue= TestEnum.Karl;
-         
        if (TestValue.In(TestEnum.Karl, TestEnum.Heinz))
        {
        }
    }
-   
    :
-   
    {
        int TestValue= 1;
        if (TestValue.In(1,2,3))
        {
        }
+   }
+   :
+   {   
+       string Name= null; 
+       if (Name.In("NameA", "NameB", ...));
+       if (Name.InContains("NameA", "NameB", ...));
+       if (Name.InStartsWith("NameA", "NameB", ...));
+       if (Name.InEndsWith("NameA", "NameB", ...));
+       if (Name.InLength(4, 5, ...));
    }
 ```
 
@@ -273,7 +270,6 @@ For your info it is better readable but the performance is an other thing.
  
 ```c#
    {
-       
        public enum StatusBarStyle
        {
             Normal,
@@ -281,27 +277,26 @@ For your info it is better readable but the performance is an other thing.
             Dark,
             Light
        }
-    
+       // Before First
        bool CurrentStatusBarStyleFirst = true;
-       StatusBarStyle CurrentStatusBarStyle = StatusBarStyle.Normale;
-       StatusBarStyle NewStatusBarStyle = StatusBarStyle.Normale;
-       
-       if (First || CurrentStatusBarStyle!=NewStatusBarStyle)
+       StatusBarStyle CurrentStatusBarStyle = StatusBarStyle.Normal;
+       StatusBarStyle NewStatusBarStyle = StatusBarStyle.Normal;
+       if (CurrentStatusBarStyleFirst || CurrentStatusBarStyle!=NewStatusBarStyle)
        {
-           First= false;
-           CurrentStatusBarStyle= NewStatusBarStyle;
-           
-           switch (CurrentStatusBarStyle)
-           {
-               case StatusBarStyle.Normal:
-                    break;
-               :
-           }
+            CurrentStatusBarStyleFirst= false;
+            CurrentStatusBarStyle= NewStatusBarStyle;
+
+            switch (CurrentStatusBarStyle)
+            {
+                case StatusBarStyle.Normal:
+                break;
+            }
        }
-       
-       First<StatusBarStyle> CurrentStatusBarStyle = new First<StatusBarStyle>(StatusBarStyle.Normale);
-       StatusBarStyle NewStatusBarStyle = StatusBarStyle.Normale;
-       
+       :
+       // With First
+       First<StatusBarStyle> CurrentStatusBarStyle = new First<StatusBarStyle>(StatusBarStyle.Normal);
+       StatusBarStyle NewStatusBarStyle = StatusBarStyle.Normal;
+       :
        if (CurrentStatusBarStyle.IsFirstOrNotEqual(NewStatusBarStyle))
        {
            switch (CurrentStatusBarStyle.Value)
@@ -311,9 +306,6 @@ For your info it is better readable but the performance is an other thing.
                :
            }
        }
-       
-       
-  	 
    }
 ```
 

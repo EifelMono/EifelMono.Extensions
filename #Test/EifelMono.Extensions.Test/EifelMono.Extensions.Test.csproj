@@ -41,6 +41,8 @@
     <Compile Include="TestClass.cs" />
     <Compile Include="TestSelect.cs" />
     <Compile Include="TestBoolean.cs" />
+    <Compile Include="TestMD.cs" />
+    <Compile Include="TestStringType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
