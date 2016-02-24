@@ -3,14 +3,14 @@ using System.Threading.Tasks;
 
 namespace EifelMono.Extensions
 {
-    public static class Run
+    public static class Flow
     {
         /// <summary>
         /// Execute the specified action.
         /// Run.Execute(async()=> {doSomeThing;});
         /// </summary>
         /// <param name="action">Action.</param>
-        public static void Execute(Action action)
+        public static void Run(Action action)
         {
             action();
         }
