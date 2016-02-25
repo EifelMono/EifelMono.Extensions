@@ -27,12 +27,10 @@ namespace EifelMono.Extensions
             if (!typeof(T).GetTypeInfo().IsEnum)
             #endif
                 throw new ArgumentException("T is not an enum");
-            return Array.ConvertAll<T,int>(
-                Enum.GetValues(typeof(T)).OfType<T>().ToArray(), 
-                (enumValue) =>
-                {
-                    return Convert.ToInt32(enumValue);
-                });
+            List<int> result = new List<int>();
+            foreach (var e in EnumerateAllValues(value))
+                result.Add(Convert.ToInt32(e));
+            return result;
         }
 
         public static IEnumerable<string> EnumerateAllNames<T>(this T value)
