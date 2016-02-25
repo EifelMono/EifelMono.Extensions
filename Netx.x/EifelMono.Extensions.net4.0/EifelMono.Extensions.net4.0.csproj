@@ -89,5 +89,14 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Class\BoolClasses.cs">
       <Link>Class\BoolClasses.cs</Link>
     </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\TEnumExtensions.cs">
+      <Link>Type\TEnumExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\FlowExtensions.cs">
+      <Link>Flow\FlowExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Static\StaticClasses.cs">
+      <Link>Static\StaticClasses.cs</Link>
+    </Compile>
   </ItemGroup>
 </Project>

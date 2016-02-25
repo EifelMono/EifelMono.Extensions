@@ -16,7 +16,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;PCL</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -49,11 +49,14 @@
     <Compile Include="Log\LogProxyConsole.cs" />
     <Compile Include="Class\BoolClasses.cs" />
     <Compile Include="Flow\FlowExtensions.cs" />
+    <Compile Include="Type\TEnumExtensions.cs" />
+    <Compile Include="Static\StaticClasses.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Type\" />
     <Folder Include="Log\" />
     <Folder Include="Class\" />
+    <Folder Include="Static\" />
   </ItemGroup>
 </Project>
