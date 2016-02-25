@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace EifelMono.Extensions
 {
-    public static class TEnumExtensions
+    public static class EnumExtensions
     {
         public static IEnumerable<T> EnumerateAllValues<T>(this T value)
         {

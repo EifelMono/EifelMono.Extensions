@@ -165,7 +165,6 @@ namespace EifelMono.Extensions
                     result += (result.Length == 0 ? "" : ".") + items[pos];
                 pos++;
             }
-               
             return result;
         }
 
@@ -209,10 +208,45 @@ namespace EifelMono.Extensions
 
         #endregion
 
+        #region Url
+
         public static string UrlCombine(this string url, params string[] paths)
         {
             return url.TrimEnd('/') + '/' + paths.Aggregate(
                 (furl, path) => string.Format("{0}/{1}", furl.TrimEnd('/'), path.TrimStart('/').TrimEnd('/'))).TrimStart('/').TrimEnd('/');
         }
+
+        #endregion
+
+        #region KeyValue KVPair
+
+        public static string[] KVPairToArray(this string value, char split = '=')
+        {
+            if (value.IsNullOrEmpty())
+                return null;
+            return value.Split(split);
+        }
+
+        public static string KeyFromKVPair(this string value)
+        {
+            var kvArray = value.KVPairToArray();
+            if (kvArray.IsNull())
+                return "";
+            if (kvArray.Length != 2)
+                return "";
+            return kvArray[0];
+        }
+
+        public static string ValueFromKVPair(this string value)
+        {
+            var kvArray = value.KVPairToArray();
+            if (kvArray.IsNull())
+                return "";
+            if (kvArray.Length != 2)
+                return "";
+            return kvArray[1];
+        }
+
+        #endregion
     }
 }

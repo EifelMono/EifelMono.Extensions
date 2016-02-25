@@ -2,14 +2,18 @@
 
 namespace EifelMono.Extensions
 {
-    public static class DelphiExtensions
+    public static class ObjectExtensions
     {
-        #region ...
+        #region Delphi
 
         public static bool Assigned(this object value)
         {
             return value != null;
         }
+
+        #endregion
+
+        #region
 
         public static bool IsNull(this object value)
         {

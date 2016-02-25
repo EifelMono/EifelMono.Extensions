@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("eifelmono")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("eifelmono@klapperich.de")]
+[assembly: AssemblyCopyright("eifelmono@klapperich.de 2016")]
 [assembly: AssemblyTrademark("Use it or lose it!")]
 [assembly: AssemblyCulture("")]
 
@@ -29,6 +29,6 @@ namespace EifelMono.Extensions
 {
     class AssemblyInfoProperties
     {
-        public const string Version= "2.1.11";
+        public const string Version= "2.1.12";
     }
 }
