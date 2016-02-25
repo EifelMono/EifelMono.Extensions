@@ -104,23 +104,23 @@ namespace EifelMono.Extensions.Test
             TestValue = "Hugo";
             TestValue.Switch()
                 .Case("Egon", (p) =>
-                    {
-                        result = 0;
-                    })
+                {
+                    result = 0;
+                })
                 .CaseStartsWith("Hu")
                 .And()
                 .CaseStartsWith("Heg", (p) =>
-                    {
-                        result = 1;
-                    })
+                {
+                    result = 1;
+                })
                 .Case("Hugo", (p) =>
-                    {
-                        result = 2;
-                    })
+                {
+                    result = 2;
+                })
                 .Default((p) =>
-                    {
-                        result = 3;
-                    });
+                {
+                    result = 3;
+                });
             Assert.IsTrue(result == 2);
             #endregion
 
@@ -129,25 +129,58 @@ namespace EifelMono.Extensions.Test
             TestValue = "Hugo";
             TestValue.Switch()
                 .Case("Egon", (p) =>
-                    {
-                        result = 0;
-                    })
+                {
+                    result = 0;
+                })
                 .CaseStartsWith("Hu")
                 .And()
                 .CaseStartsWith("Heg", (p) =>
-                    {
-                        result = 1;
-                    })
+                {
+                    result = 1;
+                })
                 .CaseStartsWith("Hug", (p) =>
-                    {
-                        result = 2;
-                    })
+                {
+                    result = 2;
+                })
                 .Default((p) =>
-                    {
-                        result = 3;
-                    });
+                {
+                    result = 3;
+                });
             Assert.IsTrue(result == 2);
             #endregion
+        }
+
+        [Test()]
+        public void TestString2()
+        {
+            Assert.IsTrue("a.b.c.d.e".DotFirst()== "a");
+            Assert.IsTrue("a.b.c.d.e".DotFirst(2)== "a.b");
+            Assert.IsTrue("a.b.c.d.e".DotFirst(3)== "a.b.c");
+            Assert.IsTrue("a.b.c.d.e".DotFirst(10)== "a.b.c.d.e");
+            Assert.IsTrue("".DotFirst()== "");
+            Assert.IsTrue("a".DotFirst()== "a");
+
+            Assert.IsTrue("a.b.c.d.e".DotLast()== "e");
+            Assert.IsTrue("a.b.c.d.e".DotLast(2)== "d.e");
+            Assert.IsTrue("a.b.c.d.e".DotLast(3)== "c.d.e");
+            Assert.IsTrue("a.b.c.d.e".DotLast(10)== "a.b.c.d.e");
+            Assert.IsTrue("".DotLast()== "");
+            Assert.IsTrue("a".DotLast()== "a");
+        }
+
+        [Test()]
+        public void TestString3()
+        {
+            Assert.IsTrue("Key=Value".KeyFromKVPair() == "Key");
+            Assert.IsTrue("Key=Value".ValueFromKVPair() == "Value");
+
+            Assert.IsTrue("Key=Value=Hallo".KeyFromKVPair() == "");
+            Assert.IsTrue("".KeyFromKVPair() == "");
+            Assert.IsTrue("Key".KeyFromKVPair() == "");
+
+            Assert.IsTrue("Key=Value=Hallo".ValueFromKVPair() == "");
+            Assert.IsTrue("".ValueFromKVPair() == "");
+            Assert.IsTrue("Key".ValueFromKVPair() == "");
         }
     }
 }
