@@ -36,7 +36,6 @@
     <Compile Include="Log\LogProxyDebug.cs" />
     <Compile Include="Log\LogExtensions.cs" />
     <Compile Include="Type\GenericExtensions.cs" />
-    <Compile Include="Type\DelphiExtensions.cs" />
     <Compile Include="Type\InvokeExtenions.cs" />
     <Compile Include="Type\StringExtensions.cs" />
     <Compile Include="Type\NumericalExtensions\NumericalExtensions.Double.cs" />
@@ -49,8 +48,9 @@
     <Compile Include="Log\LogProxyConsole.cs" />
     <Compile Include="Class\BoolClasses.cs" />
     <Compile Include="Flow\FlowExtensions.cs" />
-    <Compile Include="Type\TEnumExtensions.cs" />
     <Compile Include="Static\StaticClasses.cs" />
+    <Compile Include="Type\EnumExtensions.cs" />
+    <Compile Include="Type\ObjectExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

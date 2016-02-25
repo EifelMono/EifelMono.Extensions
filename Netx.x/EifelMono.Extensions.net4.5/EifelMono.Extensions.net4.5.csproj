@@ -44,9 +44,6 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Log\LogProxyDebug.cs">
       <Link>Log\LogProxyDebug.cs</Link>
     </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\DelphiExtensions.cs">
-      <Link>Type\DelphiExtensions.cs</Link>
-    </Compile>
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\GenericExtensions.cs">
       <Link>Type\GenericExtensions.cs</Link>
     </Compile>
@@ -86,14 +83,17 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Class\BoolClasses.cs">
       <Link>Class\BoolClasses.cs</Link>
     </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\TEnumExtensions.cs">
-      <Link>Type\TEnumExtensions.cs</Link>
-    </Compile>
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\FlowExtensions.cs">
       <Link>Flow\FlowExtensions.cs</Link>
     </Compile>
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Static\StaticClasses.cs">
       <Link>Static\StaticClasses.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\ObjectExtensions.cs">
+      <Link>Type\ObjectExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\EnumExtensions.cs">
+      <Link>Type\EnumExtensions.cs</Link>
     </Compile>
   </ItemGroup>
 </Project>
