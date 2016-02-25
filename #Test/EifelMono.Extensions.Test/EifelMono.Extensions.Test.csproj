@@ -43,6 +43,7 @@
     <Compile Include="TestBoolean.cs" />
     <Compile Include="TestMD.cs" />
     <Compile Include="TestStringType.cs" />
+    <Compile Include="TestEnums.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
