@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		EifelMono.Extensions.nuspec.command = EifelMono.Extensions.nuspec.command
 		EifelMono.Extensions.nuspec = EifelMono.Extensions.nuspec
 		README.md = README.md
+		EifelMono.Extensions.nuspec.nuget.command = EifelMono.Extensions.nuspec.nuget.command
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "#Test", "#Test", "{BC691DA9-FC3C-4346-8483-2790C920EB17}"
