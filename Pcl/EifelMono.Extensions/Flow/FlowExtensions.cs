@@ -14,6 +14,16 @@ namespace EifelMono.Extensions
         {
             action();
         }
+
+        public static async Task RunAsyn(Func<Task> action)
+        {
+            await action();
+        }
+
+        public static async Task<T> RunAsyn<T>(Func<Task<T>> action)
+        {
+            return await action();
+        }
     }
 }
 
