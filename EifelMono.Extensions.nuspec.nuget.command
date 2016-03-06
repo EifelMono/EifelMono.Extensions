@@ -7,4 +7,7 @@ xbuild /p:Configuration=Release EifelMono.Extensions.sln
 mono EifelMono.Nuget.exe nuspecversionfromdll $here/Pcl/EifelMono.Extensions/bin/Release/EifelMono.Extensions.dll
 rm *.nupkg
 mono NuGet.exe pack EifelMono.Extensions.nuspec 
+echo "-----------------------------------------"
+echo "UPLOAD to NuGet"
+echo "-----------------------------------------"
 mono NuGet.exe push *.nupkg
