@@ -4,8 +4,6 @@ using System.Runtime.CompilerServices;
 
 namespace EifelMono.Extensions
 {
-
-
     public static class Log
     {
         #region IProxy
@@ -85,36 +83,18 @@ namespace EifelMono.Extensions
         public static void CatchException(Exception ex)
         {
             if (Proxy != null && Proxy.CatchExceptionVisible)
-                ex.LogException();  
+                ex.LogException();
         }
 
-        public static void Try(Action action)
+        public static void Try(Action action, Action<Exception> catchAction = null, Action finallyAction = null)
         {
-            try
-            {
-                action.SafeInvoke();
-            }
-            catch (Exception ex)
-            {
-                Log.CatchException(ex);
-            }
+            action.SafeInvoke(catchAction, finallyAction);
         }
 
+        [Obsolete ("Use Try it's the same")]
         public static void TryCatchFinally(Action action, Action<Exception> catchAction = null, Action finallyAction = null)
         {
-            try
-            {
-                action.SafeInvoke();
-            }
-            catch (Exception ex)
-            {
-                Log.CatchException(ex);
-                catchAction.SafeInvoke(ex);
-            }
-            finally
-            {
-                finallyAction.SafeInvoke();
-            }
+            Try(action, catchAction, finallyAction);
         }
 
         #endregion

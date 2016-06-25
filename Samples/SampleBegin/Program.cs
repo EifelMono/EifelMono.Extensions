@@ -121,22 +121,17 @@ namespace SampleBegin
 
         static void LogAll()
         {
-            Action action = () =>
+            Action action = null;
+            action.SafeInvoke();
+            action = () =>
             {
                 var j = 0;
                 var i = 1 / j;
-                Console.WriteLine(i); 
+                Console.WriteLine(i);
             };
 
             // 1.
-            try
-            {
-                action.SafeInvoke();
-            }
-            catch (Exception ex)
-            {
-                ex.LogException();
-            }
+            action.SafeInvoke();
 
             // 2.
             Log.Try(() =>

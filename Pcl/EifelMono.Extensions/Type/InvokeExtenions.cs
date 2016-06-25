@@ -15,13 +15,18 @@ namespace EifelMono.Extensions
         /// <param name="value">Value.</param>
         /// <param name="catchAction">Catch action.</param>
         /// <param name="finallyAction">Finally action.</param>
-        public static void SafeInvoke(this Action value, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static void SafeInvoke(this Action value, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Action action = value;
                 if (action != null)
                     action();
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {
@@ -44,13 +49,18 @@ namespace EifelMono.Extensions
         /// <param name="value">Value.</param>
         /// <param name="catchAction">Catch action.</param>
         /// <param name="finallyAction">Finally action.</param>
-        public static void SafeInvoke<T1>(this Action<T1> value, T1 value1, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static void SafeInvoke<T1>(this Action<T1> value, T1 value1, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Action<T1> action = value;
                 if (action != null)
                     action(value1);
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {
@@ -77,13 +87,18 @@ namespace EifelMono.Extensions
         /// <param name="finallyAction">Finally action.</param>
         /// <typeparam name="T1">The 1st type parameter.</typeparam>
         /// <typeparam name="T2">The 2nd type parameter.</typeparam>
-        public static void SafeInvoke<T1, T2>(this Action<T1, T2> value, T1 value1, T2 value2, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static void SafeInvoke<T1, T2>(this Action<T1, T2> value, T1 value1, T2 value2, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Action<T1, T2> action = value;
                 if (action != null)
                     action(value1, value2);
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {
@@ -112,13 +127,18 @@ namespace EifelMono.Extensions
         /// <typeparam name="T1">The 1st type parameter.</typeparam>
         /// <typeparam name="T2">The 2nd type parameter.</typeparam>
         /// <typeparam name="T3">The 3rd type parameter.</typeparam>
-        public static void SafeInvoke<T1, T2, T3>(this Action<T1, T2, T3> value, T1 value1, T2 value2, T3 value3, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static void SafeInvoke<T1, T2, T3>(this Action<T1, T2, T3> value, T1 value1, T2 value2, T3 value3, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Action<T1, T2, T3> action = value;
                 if (action != null)
                     action(value1, value2, value3);
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {
@@ -149,13 +169,18 @@ namespace EifelMono.Extensions
         /// <typeparam name="T2">The 2nd type parameter.</typeparam>
         /// <typeparam name="T3">The 3rd type parameter.</typeparam>
         /// <typeparam name="T4">The 4th type parameter.</typeparam>
-        public static void SafeInvoke<T1, T2, T3, T4>(this Action<T1, T2, T3, T4> value, T1 value1, T2 value2, T3 value3, T4 value4, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static void SafeInvoke<T1, T2, T3, T4>(this Action<T1, T2, T3, T4> value, T1 value1, T2 value2, T3 value3, T4 value4, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Action<T1, T2, T3, T4> action = value;
                 if (action != null)
                     action(value1, value2, value3, value4);
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {
@@ -188,13 +213,18 @@ namespace EifelMono.Extensions
         /// <typeparam name="T3">The 3rd type parameter.</typeparam>
         /// <typeparam name="T4">The 4th type parameter.</typeparam>
         /// <typeparam name="T5">The 5th type parameter.</typeparam>
-        public static void SafeInvoke<T1, T2, T3, T4, T5>(this Action<T1, T2, T3, T4, T5> value, T1 value1, T2 value2, T3 value3, T4 value4, T5 value5, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static void SafeInvoke<T1, T2, T3, T4, T5>(this Action<T1, T2, T3, T4, T5> value, T1 value1, T2 value2, T3 value3, T4 value4, T5 value5, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Action<T1, T2, T3, T4, T5> action = value;
                 if (action != null)
                     action(value1, value2, value3, value4, value5);
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {
@@ -223,13 +253,18 @@ namespace EifelMono.Extensions
         /// <param name="catchAction">Catch action.</param>
         /// <param name="finallyAction">Finally action.</param>
         /// <typeparam name="TResult">The 1st type parameter.</typeparam>
-        public static TResult SafeInvoke<TResult>(this Func<TResult> value, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static TResult SafeInvoke<TResult>(this Func<TResult> value, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Func<TResult> action = value;
                 if (action != null)
                     return action();
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {
@@ -257,13 +292,18 @@ namespace EifelMono.Extensions
         /// <param name="finallyAction">Finally action.</param>
         /// <typeparam name="T1">The 1st type parameter.</typeparam>
         /// <typeparam name="TResult">The 2nd type parameter.</typeparam>
-        public static TResult SafeInvoke<T1, TResult>(this Func<T1, TResult> value, T1 value1, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static TResult SafeInvoke<T1, TResult>(this Func<T1, TResult> value, T1 value1, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Func<T1, TResult> action = value;
                 if (action != null)
                     return action(value1);
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {
@@ -293,13 +333,18 @@ namespace EifelMono.Extensions
         /// <typeparam name="T1">The 1st type parameter.</typeparam>
         /// <typeparam name="T2">The 2nd type parameter.</typeparam>
         /// <typeparam name="TResult">The 3rd type parameter.</typeparam>
-        public static TResult SafeInvoke<T1, T2, TResult>(this Func<T1, T2, TResult> value, T1 value1, T2 value2, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static TResult SafeInvoke<T1, T2, TResult>(this Func<T1, T2, TResult> value, T1 value1, T2 value2, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Func<T1, T2, TResult> action = value;
                 if (action != null)
                     return action(value1, value2);
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {
@@ -331,13 +376,18 @@ namespace EifelMono.Extensions
         /// <typeparam name="T2">The 2nd type parameter.</typeparam>
         /// <typeparam name="T3">The 3rd type parameter.</typeparam>
         /// <typeparam name="TResult">The 4th type parameter.</typeparam>
-        public static TResult SafeInvoke<T1, T2, T3, TResult>(this Func<T1, T2, T3, TResult> value, T1 value1, T2 value2, T3 value3, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static TResult SafeInvoke<T1, T2, T3, TResult>(this Func<T1, T2, T3, TResult> value, T1 value1, T2 value2, T3 value3, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Func<T1, T2, T3, TResult> action = value;
                 if (action != null)
                     return action(value1, value2, value3);
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {
@@ -371,13 +421,18 @@ namespace EifelMono.Extensions
         /// <typeparam name="T3">The 3rd type parameter.</typeparam>
         /// <typeparam name="T4">The 4th type parameter.</typeparam>
         /// <typeparam name="TResult">The 5th type parameter.</typeparam>
-        public static TResult SafeInvoke<T1, T2, T3, T4, TResult>(this Func<T1, T2, T3,  T4, TResult> value, T1 value1, T2 value2, T3 value3, T4 value4, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static TResult SafeInvoke<T1, T2, T3, T4, TResult>(this Func<T1, T2, T3, T4, TResult> value, T1 value1, T2 value2, T3 value3, T4 value4, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Func<T1, T2, T3, T4, TResult> action = value;
                 if (action != null)
                     return action(value1, value2, value3, value4);
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {
@@ -413,13 +468,18 @@ namespace EifelMono.Extensions
         /// <typeparam name="T4">The 4th type parameter.</typeparam>
         /// <typeparam name="T5">The 5th type parameter.</typeparam>
         /// <typeparam name="TResult">The 6th type parameter.</typeparam>
-        public static TResult SafeInvoke<T1, T2, T3, T4, T5, TResult>(this Func<T1, T2, T3,  T4, T5, TResult> value, T1 value1, T2 value2, T3 value3, T4 value4, T5 value5, Action<Exception> catchAction = null, Action finallyAction = null)
+        public static TResult SafeInvoke<T1, T2, T3, T4, T5, TResult>(this Func<T1, T2, T3, T4, T5, TResult> value, T1 value1, T2 value2, T3 value3, T4 value4, T5 value5, Action<Exception> catchAction = null, Action finallyAction = null, Action nullAction = null)
         {
             try
             {
                 Func<T1, T2, T3, T4, T5, TResult> action = value;
                 if (action != null)
                     return action(value1, value2, value3, value4, value5);
+                else
+                {
+                    if (nullAction != null)
+                        nullAction();
+                }
             }
             catch (Exception ex)
             {

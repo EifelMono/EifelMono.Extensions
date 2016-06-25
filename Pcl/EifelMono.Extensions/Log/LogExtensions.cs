@@ -40,11 +40,12 @@ namespace EifelMono.Extensions
             Log.Text(Log.Type.Communication, text, filePath, lineNumber, memberName);
         }
 
-        public static void Try(this Action action)
+        public static void Try(this Action action, Action<Exception> catchAction = null, Action finallyAction = null)
         {
-            Log.Try(action);
+            Log.Try(action, catchAction, finallyAction);
         }
 
+        [Obsolete("Use Try it's the same")]
         public static void TryCatchFinally(this Action action, Action<Exception> catchAction = null, Action finallyAction = null)
         {
             Log.TryCatchFinally(action, catchAction, finallyAction);
