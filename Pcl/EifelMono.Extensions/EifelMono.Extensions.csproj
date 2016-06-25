@@ -48,7 +48,6 @@
     <Compile Include="Log\LogProxyConsole.cs" />
     <Compile Include="Class\BoolClasses.cs" />
     <Compile Include="Flow\FlowExtensions.cs" />
-    <Compile Include="Static\StaticClasses.cs" />
     <Compile Include="Type\EnumExtensions.cs" />
     <Compile Include="Type\ObjectExtensions.cs" />
   </ItemGroup>
@@ -57,6 +56,5 @@
     <Folder Include="Type\" />
     <Folder Include="Log\" />
     <Folder Include="Class\" />
-    <Folder Include="Static\" />
   </ItemGroup>
 </Project>

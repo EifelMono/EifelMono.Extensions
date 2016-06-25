@@ -43,6 +43,7 @@
     <Compile Include="TestString.cs" />
     <Compile Include="TestStringType.cs" />
     <Compile Include="TestSwitch.cs" />
+    <Compile Include="TestGeneric.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

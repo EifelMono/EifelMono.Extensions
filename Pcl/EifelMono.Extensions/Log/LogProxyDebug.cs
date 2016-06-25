@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using EifelMono.Extensions;
-using System.Runtime.CompilerServices;
 
 namespace EifelMono.Extensions
 {

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Threading;
-using EifelMono.Extensions;
-using System.Linq.Expressions;
 
 namespace EifelMono.Extensions
 {

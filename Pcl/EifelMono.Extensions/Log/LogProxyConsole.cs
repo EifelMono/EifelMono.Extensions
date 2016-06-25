@@ -1,9 +1,8 @@
 ﻿using System;
-using EifelMono.Extensions;
 
 namespace EifelMono.Extensions
 {
-    #if NOPCL
+#if NOPCL
     public class LogProxyConsole: LogProxyDebug
     {
         public LogProxyConsole()
@@ -21,6 +20,6 @@ namespace EifelMono.Extensions
                 Console.WriteLine(prefix + string.Format(format, args));
         }
     }
-    #endif
+#endif
 }
 

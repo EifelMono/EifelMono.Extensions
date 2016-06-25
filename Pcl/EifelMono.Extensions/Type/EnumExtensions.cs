@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -43,6 +42,18 @@ namespace EifelMono.Extensions
                 throw new ArgumentException("T is not an enum");
             return Enum.GetNames(typeof(T));
         }
+    }
+
+    public static partial class Static
+    {
+        /// <summary>
+        /// Enumerate this enums
+        /// 
+        /// Thank you to
+        /// http://dotnet-snippets.de/snippet/enum-werte-aufzaehlen/14116
+        /// </summary>
+        /// <typeparam name="TEnum">enum definition</typeparam>
+        public static IEnumerable<TEnum> Enumerate<TEnum>() => Enum.GetValues(typeof(TEnum)).OfType<TEnum>();
     }
 }
 

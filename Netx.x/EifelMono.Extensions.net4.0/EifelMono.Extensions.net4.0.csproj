@@ -109,9 +109,6 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\FlowExtensions.cs">
       <Link>Flow\FlowExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Static\StaticClasses.cs">
-      <Link>Static\StaticClasses.cs</Link>
-    </Compile>
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\EnumExtensions.cs">
       <Link>Type\EnumExtensions.cs</Link>
     </Compile>

@@ -18,7 +18,7 @@ namespace EifelMono.Extensions
 
         public static bool In<T>(this T value, params T[] choices)
         {
-            return In(value, choices as  IEnumerable<T>);
+            return In(value, choices as IEnumerable<T>);
         }
 
         public static bool In<T>(this IEnumerable<T> values, IEnumerable<T> choices)
@@ -31,7 +31,7 @@ namespace EifelMono.Extensions
 
         public static bool In<T>(this IEnumerable<T> values, params T[] choices)
         {
-            return In(values, choices as  IEnumerable<T>);
+            return In(values, choices as IEnumerable<T>);
         }
 
         #endregion
@@ -128,9 +128,9 @@ namespace EifelMono.Extensions
                 return this;
             }
 
-            public int Result1 { get; set; }= -1;
+            public int Result1 { get; set; } = -1;
 
-            public int Result2 { get; set; }= -1;
+            public int Result2 { get; set; } = -1;
 
             public int Result { get { return Result1 + Result2; } }
         }
@@ -158,7 +158,7 @@ namespace EifelMono.Extensions
 
         #region As
 
-        public static IEnumerable<T> AsOrEmpty<T>(this object value) where T: class
+        public static IEnumerable<T> AsOrEmpty<T>(this object value) where T : class
         {
             T t = value as T;
             if (t != null)
@@ -166,6 +166,24 @@ namespace EifelMono.Extensions
         }
 
         #endregion
+    }
+
+    public  static partial class Static
+    {
+        public static List<T> ValuesAsList<T>(params T[] values)
+        {
+            return new List<T>(values as IEnumerable<T>);
+        }
+
+        public static T[] ValuesAsArray<T>(params T[] values)
+        {
+            return values;
+        }
+
+        public static IEnumerable<T> ValuesAsEnumerable<T>(params T[] values)
+        {
+            return values as IEnumerable<T>;
+        }
     }
 }
 
