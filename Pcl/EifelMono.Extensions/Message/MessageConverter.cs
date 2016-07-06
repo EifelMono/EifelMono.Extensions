@@ -56,7 +56,7 @@ namespace EifelMono.Extensions
 
         #region Input
         public Dictionary<Type, Action<Message>> OnInputs = new Dictionary<Type, Action<Message>>();
-        public void OnInut<T>(Action<T> action) where T : Message
+        public void OnInput<T>(Action<T> action) where T : Message
         {
             var objType = typeof(T);
             if (!OnInputs.ContainsKey(objType))
@@ -66,13 +66,23 @@ namespace EifelMono.Extensions
 
         public void Input(string text)
         {
-            var obj = FromText(text);
-            var objType = obj.GetType();
-            if (OnInputs.ContainsKey(objType))
+            var message = FromText(text);
+            Input(message);
+        }
+
+        public void Input(Message message, bool toText= false)
+        {
+            if (toText)
+                Input(ToText(message));
+            else
             {
-                var action = OnInputs[objType];
-                if (action != null)
-                    action(obj);
+                var objType = message.GetType();
+                if (OnInputs.ContainsKey(objType))
+                {
+                    var action = OnInputs[objType];
+                    if (action != null)
+                        action(message);
+                } 
             }
         }
 
