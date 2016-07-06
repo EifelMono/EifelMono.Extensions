@@ -29,7 +29,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -44,15 +44,16 @@
     <Compile Include="TestStringType.cs" />
     <Compile Include="TestSwitch.cs" />
     <Compile Include="TestGeneric.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="TestMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Netx.x\EifelMono.Extensions.net4.5\EifelMono.Extensions.net4.5.csproj">
       <Project>{4D26DC5E-FAF4-4395-8AD8-2F3C22A0F44D}</Project>
       <Name>EifelMono.Extensions.net4.5</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
