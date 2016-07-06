@@ -47,6 +47,9 @@
     <Reference Include="System.Threading.Tasks">
       <HintPath>..\..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
@@ -114,6 +117,12 @@
     </Compile>
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\ObjectExtensions.cs">
       <Link>Type\ObjectExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Message\Message.cs">
+      <Link>Message\Message.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Message\MessageConverter.cs">
+      <Link>Message\MessageConverter.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

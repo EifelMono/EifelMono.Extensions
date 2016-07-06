@@ -50,11 +50,22 @@
     <Compile Include="Flow\FlowExtensions.cs" />
     <Compile Include="Type\EnumExtensions.cs" />
     <Compile Include="Type\ObjectExtensions.cs" />
+    <Compile Include="Message\Message.cs" />
+    <Compile Include="Message\MessageConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Type\" />
     <Folder Include="Log\" />
     <Folder Include="Class\" />
+    <Folder Include="Message\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

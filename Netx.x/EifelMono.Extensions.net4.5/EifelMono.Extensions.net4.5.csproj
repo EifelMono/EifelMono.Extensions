@@ -29,6 +29,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -92,5 +95,14 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\EnumExtensions.cs">
       <Link>Type\EnumExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Message\Message.cs">
+      <Link>Message\Message.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Message\MessageConverter.cs">
+      <Link>Message\MessageConverter.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
