@@ -44,7 +44,7 @@
     <Compile Include="TestStringType.cs" />
     <Compile Include="TestSwitch.cs" />
     <Compile Include="TestGeneric.cs" />
-    <Compile Include="TestMessage.cs" />
+    <Compile Include="TestMessageSwitch.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Netx.x\EifelMono.Extensions.net4.5\EifelMono.Extensions.net4.5.csproj">

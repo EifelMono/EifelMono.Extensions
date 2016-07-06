@@ -1,13 +1,11 @@
 ﻿using System;
 namespace EifelMono.Extensions
 {
-    public class Message
+    public class SwitchMessage
     {
-        public Message()
+        public SwitchMessage()
         {
         }
     }
-
-
 }
 

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 namespace EifelMono.Extensions
 {
-    public class MessageConverter
+    public class MessageSwitch
     {
         #region Convert
         public bool UseBase64 { get; set; } = false;
@@ -33,21 +33,21 @@ namespace EifelMono.Extensions
                 return text;
         }
 
-        public string ToText(Message message)
+        public string ToText(SwitchMessage message)
         {
             return ToBase64(JsonConvert.SerializeObject(message, JsonSerializerSettings));
         }
 
-        public Message FromText(string text)
+        public SwitchMessage FromText(string text)
         {
-            return JsonConvert.DeserializeObject<Message>(FromBase64(text), JsonSerializerSettings);
+            return JsonConvert.DeserializeObject<SwitchMessage>(FromBase64(text), JsonSerializerSettings);
         }
         #endregion
 
         #region Output
         public Action<string> OnOutput { get; set; } = null;
 
-        public void Output(Message message)
+        public void Output(SwitchMessage message)
         {
             if (OnOutput != null)
                 OnOutput(ToText(message));
@@ -55,31 +55,31 @@ namespace EifelMono.Extensions
         #endregion
 
         #region Input
-        public Dictionary<Type, Action<Message>> OnInputs = new Dictionary<Type, Action<Message>>();
-        public void OnInput<T>(Action<T> action) where T : Message
+        public Dictionary<Type, Action<SwitchMessage>> Cases = new Dictionary<Type, Action<SwitchMessage>>();
+        public void Case<T>(Action<T> action) where T : SwitchMessage
         {
             var objType = typeof(T);
-            if (!OnInputs.ContainsKey(objType))
-                OnInputs.Add(objType, null);
-            OnInputs[objType] = (obj) => action((T)obj);
+            if (!Cases.ContainsKey(objType))
+                Cases.Add(objType, null);
+            Cases[objType] = (obj) => action((T)obj);
         }
 
-        public void Input(string text)
+        public void Switch(string text)
         {
             var message = FromText(text);
-            Input(message);
+            Switch(message);
         }
 
-        public void Input(Message message, bool toText= false)
+        public void Switch(SwitchMessage message, bool toText= false)
         {
             if (toText)
-                Input(ToText(message));
+                Switch(ToText(message));
             else
             {
                 var objType = message.GetType();
-                if (OnInputs.ContainsKey(objType))
+                if (Cases.ContainsKey(objType))
                 {
-                    var action = OnInputs[objType];
+                    var action = Cases[objType];
                     if (action != null)
                         action(message);
                 } 

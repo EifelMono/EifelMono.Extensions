@@ -95,11 +95,11 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\EnumExtensions.cs">
       <Link>Type\EnumExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Message\Message.cs">
-      <Link>Message\Message.cs</Link>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Message\SwitchMessage.cs">
+      <Link>Message\SwitchMessage.cs</Link>
     </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Message\MessageConverter.cs">
-      <Link>Message\MessageConverter.cs</Link>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Message\MessageSwitch.cs">
+      <Link>Message\MessageSwitch.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

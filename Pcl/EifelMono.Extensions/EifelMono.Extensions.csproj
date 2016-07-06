@@ -50,8 +50,8 @@
     <Compile Include="Flow\FlowExtensions.cs" />
     <Compile Include="Type\EnumExtensions.cs" />
     <Compile Include="Type\ObjectExtensions.cs" />
-    <Compile Include="Message\Message.cs" />
-    <Compile Include="Message\MessageConverter.cs" />
+    <Compile Include="Message\SwitchMessage.cs" />
+    <Compile Include="Message\MessageSwitch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
