@@ -21,6 +21,7 @@ namespace SampleBegin
 
             #region Other
             LogAll();
+            TestSelect();
             #endregion
 
             Console.WriteLine("Ready");
@@ -168,7 +169,7 @@ namespace SampleBegin
             public string B { get; set; }
         }
 
-        public void TestSelect2()
+        public static void TestSelect()
         {
             string ResultOnCaseMessageA = "";
             string ResultOnCaseMessageB = "";
@@ -186,6 +187,15 @@ namespace SampleBegin
                 ResultOnCaseMessageA = obj.A;
                 ResultOnCaseMessageB = obj.B;
             });
+
+            select.InputUnitTest(new MessageA
+            {
+                A = "Hallo"
+            });
+            if (ResultOnCaseMessageA == "Hallo")
+                Console.WriteLine("ok");
+            else
+                Console.WriteLine("error");
         }
 
         #endregion
