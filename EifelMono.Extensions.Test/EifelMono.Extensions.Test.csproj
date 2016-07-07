@@ -35,16 +35,16 @@
   <ItemGroup>
     <Compile Include="TestBoolean.cs" />
     <Compile Include="TestClass.cs" />
-    <Compile Include="TestEnums.cs" />
+    <Compile Include="TestEnum.cs" />
     <Compile Include="TestIf.cs" />
     <Compile Include="TestIn.cs" />
     <Compile Include="TestMD.cs" />
-    <Compile Include="TestSelect.cs" />
+    <Compile Include="TestExtensionSelect.cs" />
     <Compile Include="TestString.cs" />
     <Compile Include="TestStringType.cs" />
     <Compile Include="TestSwitch.cs" />
     <Compile Include="TestGeneric.cs" />
-    <Compile Include="TestMessageSwitch.cs" />
+    <Compile Include="TestSelect.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Netx.x\EifelMono.Extensions.net4.5\EifelMono.Extensions.net4.5.csproj">

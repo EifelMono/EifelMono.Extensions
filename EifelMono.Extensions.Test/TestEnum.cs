@@ -66,10 +66,10 @@ namespace EifelMono.Extensions.Test
         [Test()]
         public void TestEnum1Static()
         {
-            var a = Enumerate<TestSet>();
+            var a = EnumValues<TestSet>();
             Assert.IsTrue(a.ToList().Count == 3);
             int count = 0;
-            foreach (var x in Enumerate<TestSet>())
+            foreach (var x in EnumValues<TestSet>())
             {
                 if (x == TestSet.Enum1)
                     count += 1;

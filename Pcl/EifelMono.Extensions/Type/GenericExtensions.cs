@@ -168,7 +168,7 @@ namespace EifelMono.Extensions
         #endregion
     }
 
-    public  static partial class Static
+    public static partial class Static
     {
         public static List<T> ValuesAsList<T>(params T[] values)
         {

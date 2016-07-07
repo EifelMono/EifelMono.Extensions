@@ -91,7 +91,7 @@ namespace EifelMono.Extensions
 
         #region CaseOn
 
-        public static SelectCasePipe<object> CaseOn<TOn>(this SelectCasePipe<object> pipe, Func<TOn, bool> choice, SelectCasePipe<object>.Action<TOn> action = null)
+        public static SelectCasePipe<object> Case<TOn>(this SelectCasePipe<object> pipe, Func<TOn, bool> choice, SelectCasePipe<object>.Action<TOn> action = null)
         {   
             if (pipe.Executed)
                 return pipe;
@@ -129,15 +129,15 @@ namespace EifelMono.Extensions
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.ToString());
+                ex.LogException();
             }
 
             return pipe;
         }
 
-        public static SelectCasePipe<object> CaseOn<TOn>(this SelectCasePipe<object> pipe, SelectCasePipe<object>.Action<TOn> action)
+        public static SelectCasePipe<object> Case<TOn>(this SelectCasePipe<object> pipe, SelectCasePipe<object>.Action<TOn> action)
         {
-            return CaseOn(pipe, null, action);
+            return Case(pipe, null, action);
         }
 
         #endregion

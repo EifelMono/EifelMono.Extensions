@@ -152,6 +152,44 @@ namespace SampleBegin
 
         #endregion
 
+        #region Select
+        public class MessageA
+        {
+            public string A { get; set; }
+        }
+
+        public class MessageB
+        {
+            public string B { get; set; }
+        }
+
+        public class MessageAB : MessageA
+        {
+            public string B { get; set; }
+        }
+
+        public void TestSelect2()
+        {
+            string ResultOnCaseMessageA = "";
+            string ResultOnCaseMessageB = "";
+            Select select = new Select().OnOutput((text) =>
+            {
+                
+            }).Case<MessageA>((obj, s) =>
+            {
+                ResultOnCaseMessageA = obj.A;
+            }).Case<MessageB>((obj, s) =>
+            {
+                ResultOnCaseMessageB = obj.B;
+            }).Case<MessageAB>((obj, s) =>
+            {
+                ResultOnCaseMessageA = obj.A;
+                ResultOnCaseMessageB = obj.B;
+            });
+        }
+
+        #endregion
+
     }
 
 }

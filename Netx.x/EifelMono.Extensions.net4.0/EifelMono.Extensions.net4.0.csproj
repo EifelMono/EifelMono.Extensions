@@ -118,11 +118,8 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\ObjectExtensions.cs">
       <Link>Type\ObjectExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Message\SwitchMessage.cs">
-      <Link>Message\SwitchMessage.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Message\MessageSwitch.cs">
-      <Link>Message\MessageSwitch.cs</Link>
+    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\Select.cs">
+      <Link>Flow\Select.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

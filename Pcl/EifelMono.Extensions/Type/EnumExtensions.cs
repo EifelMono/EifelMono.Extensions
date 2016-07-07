@@ -47,13 +47,18 @@ namespace EifelMono.Extensions
     public static partial class Static
     {
         /// <summary>
-        /// Enumerate this enums
-        /// 
-        /// Thank you to
-        /// http://dotnet-snippets.de/snippet/enum-werte-aufzaehlen/14116
+        /// Enums the values.
         /// </summary>
-        /// <typeparam name="TEnum">enum definition</typeparam>
-        public static IEnumerable<TEnum> Enumerate<TEnum>() => Enum.GetValues(typeof(TEnum)).OfType<TEnum>();
+        /// <returns>The values.</returns>
+        /// <typeparam name="T">T must be an enum</typeparam>
+        public static IEnumerable<T> EnumValues<T>() => Enum.GetValues(typeof(T)).OfType<T>();
+    
+        /// <summary>
+        /// Enums the names.
+        /// </summary>
+        /// <returns>The names.</returns>
+        /// <typeparam name="T">T must be an enum</typeparam>
+        public static IEnumerable<T> EnumNames<T>() => Enum.GetNames(typeof(T)).OfType<T>();
     }
 }
 
