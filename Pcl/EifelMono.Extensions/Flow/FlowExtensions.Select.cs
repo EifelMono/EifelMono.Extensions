@@ -89,20 +89,20 @@ namespace EifelMono.Extensions
 
         #endregion
 
-        #region CaseOn
+        #region Case
 
-        public static SelectCasePipe<object> Case<TOn>(this SelectCasePipe<object> pipe, Func<TOn, bool> choice, SelectCasePipe<object>.Action<TOn> action = null)
+        public static SelectCasePipe<object> CaseAs<T>(this SelectCasePipe<object> pipe, Func<T, bool> choice, SelectCasePipe<object>.Action<T> action = null)
         {   
             if (pipe.Executed)
                 return pipe;
 
             #if NOPCL
-            var onType = typeof(TOn);
+            var onType = typeof(T);
             #else
-            var onType = typeof(TOn).GetTypeInfo();     
+            var onType = typeof(T).GetTypeInfo();     
             #endif
 
-            Action<TOn> executeDependCaseAction = (onObject) =>
+            Action<T> executeDependCaseAction = (onObject) =>
             {
                 pipe.CurrentDecision.CalcDecision(choice  == null ? true : choice(onObject));
                 if (action != null)
@@ -122,10 +122,10 @@ namespace EifelMono.Extensions
             {
                 if (pipe.CompareValueType.IsClass && onType.IsClass)
                 if (onType.IsAssignableFrom(pipe.CompareValueType))
-                    executeDependCaseAction((TOn)pipe.CompareValue);
+                    executeDependCaseAction((T)pipe.CompareValue);
                 
                 if (pipe.CompareValueType.IsPrimitive && pipe.CompareValueType.FullName == onType.FullName)
-                    executeDependCaseAction((TOn)Convert.ChangeType(pipe.CompareValue, typeof(TOn)));
+                    executeDependCaseAction((T)Convert.ChangeType(pipe.CompareValue, typeof(T)));
             }
             catch (Exception ex)
             {
@@ -135,27 +135,27 @@ namespace EifelMono.Extensions
             return pipe;
         }
 
-        public static SelectCasePipe<object> Case<TOn>(this SelectCasePipe<object> pipe, SelectCasePipe<object>.Action<TOn> action)
+        public static SelectCasePipe<object> CaseAs<T>(this SelectCasePipe<object> pipe, SelectCasePipe<object>.Action<T> action)
         {
-            return Case(pipe, null, action);
+            return CaseAs(pipe, null, action);
         }
 
         #endregion
 
         #region CaseOnEqual
 
-        public static SelectCasePipe<object> CaseOnEqual<TOn>(this SelectCasePipe<object> pipe, Func<TOn, bool> choice, SelectCasePipe<object>.Action<TOn> action = null)
+        public static SelectCasePipe<object> Case<T>(this SelectCasePipe<object> pipe, Func<T, bool> choice, SelectCasePipe<object>.Action<T> action = null)
         {   
             if (pipe.Executed)
                 return pipe;
 
             #if NOPCL
-            var onType = typeof(TOn);
+            var onType = typeof(T);
             #else
-            var onType = typeof(TOn).GetTypeInfo();     
+            var onType = typeof(T).GetTypeInfo();     
             #endif
 
-            Action<TOn> executeDependCaseAction = (onObject) =>
+            Action<T> executeDependCaseAction = (onObject) =>
                 {
                     pipe.CurrentDecision.CalcDecision(choice  == null ? true : choice(onObject));
                     if (action != null)
@@ -174,7 +174,7 @@ namespace EifelMono.Extensions
             try
             {
                 if (pipe.CompareValueType.FullName == onType.FullName)
-                    executeDependCaseAction((TOn)Convert.ChangeType(pipe.CompareValue, typeof(TOn)));
+                    executeDependCaseAction((T)Convert.ChangeType(pipe.CompareValue, typeof(T)));
             }
             catch (Exception ex)
             {
@@ -184,9 +184,9 @@ namespace EifelMono.Extensions
             return pipe;
         }
 
-        public static SelectCasePipe<object> CaseOnEqual<TOn>(this SelectCasePipe<object> pipe, SelectCasePipe<object>.Action<TOn> action)
+        public static SelectCasePipe<object> Case<T>(this SelectCasePipe<object> pipe, SelectCasePipe<object>.Action<T> action)
         {
-            return CaseOnEqual(pipe, null, action);
+            return Case(pipe, null, action);
         }
 
         #endregion

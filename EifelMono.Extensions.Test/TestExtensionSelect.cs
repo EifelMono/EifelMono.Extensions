@@ -38,7 +38,7 @@ namespace EifelMono.Extensions.Test
                 Debug.WriteLine("ClassC");
 
             TestValue.Select()
-                .Case < Action<int>>((o) =>
+                .CaseAs < Action<int>>((o) =>
                 {
                     return true;
                 }, (p, o) =>
@@ -46,7 +46,7 @@ namespace EifelMono.Extensions.Test
                     Debug.WriteLine("< Action<int>>");
                     p.Continue();
                 })
-                .Case<ClassA>((o) =>
+                .CaseAs<ClassA>((o) =>
                 {
                     return true;
                 }, (p, o) =>
@@ -54,7 +54,7 @@ namespace EifelMono.Extensions.Test
                     Debug.WriteLine("o.A={0}", o.A);
                     p.Continue();
                 })
-                .Case<ClassB>((o) =>
+                .CaseAs<ClassB>((o) =>
                 {
                     return true;
                 }, (p, o) =>
@@ -63,7 +63,7 @@ namespace EifelMono.Extensions.Test
                     Debug.WriteLine("o.B={0}", o.B);
                     p.Continue();
                 })
-                .Case<ClassC>((o) =>
+                .CaseAs<ClassC>((o) =>
                 {
                     return true;
                 }, (p, o) =>
@@ -73,7 +73,7 @@ namespace EifelMono.Extensions.Test
                     Debug.WriteLine("o.C={0}", o.C);
                     p.Continue();
                 })
-                .Case<string>((o) =>
+                .CaseAs<string>((o) =>
                 {
                     return true; 
                 },
@@ -94,7 +94,7 @@ namespace EifelMono.Extensions.Test
             bool TestValue = true;
 
             TestValue.Select()
-                .Case<ClassA>((o) =>
+                .CaseAs<ClassA>((o) =>
                 {
                     return true;
                 }, (p, o) =>
@@ -102,7 +102,7 @@ namespace EifelMono.Extensions.Test
                     Debug.WriteLine("o.A={0}", o.A);
                     p.Continue();
                 })
-                .Case<string>((o) =>
+                .CaseAs<string>((o) =>
                 {
                     return true;
                 }, (p, o) =>
@@ -110,7 +110,7 @@ namespace EifelMono.Extensions.Test
                     Debug.WriteLine("o={0}", o);
                     p.Continue();
                 })
-                .Case<int>((o) =>
+                .CaseAs<int>((o) =>
                 {
                     return true;
                 }, (p, o) =>
@@ -118,7 +118,7 @@ namespace EifelMono.Extensions.Test
                     Debug.WriteLine("o={0}", o);
                     p.Continue();
                 })
-                .Case<double>((o) =>
+                .CaseAs<double>((o) =>
                 {
                     return true;
                 }, (p, o) =>
@@ -126,7 +126,7 @@ namespace EifelMono.Extensions.Test
                     Debug.WriteLine("o={0}", o);
                     p.Continue();
                 })
-                .Case<bool>((o) =>
+                .CaseAs<bool>((o) =>
                 {
                     return true;
                 }, (p, o) =>
@@ -146,27 +146,27 @@ namespace EifelMono.Extensions.Test
             bool TestValue = true;
 
             TestValue.Select()
-                .Case<ClassA>((p, o) =>
+                .CaseAs<ClassA>((p, o) =>
                 {
                     Debug.WriteLine("o.A={0}", o.A);
                     p.Continue();
                 })
-                .Case<string>((p, o) =>
+                .CaseAs<string>((p, o) =>
                 {
                     Debug.WriteLine("o={0}", o);
                     p.Continue();
                 })
-                .Case<int>((p, o) =>
+                .CaseAs<int>((p, o) =>
                 {
                     Debug.WriteLine("o={0}", o);
                     p.Continue();
                 })
-                .Case<double>((p, o) =>
+                .CaseAs<double>((p, o) =>
                 {
                     Debug.WriteLine("o={0}", o);
                     p.Continue();
                 })
-                .Case<bool>((p, o) =>
+                .CaseAs<bool>((p, o) =>
                 {
                     Debug.WriteLine("o={0}", o);
                     p.Continue();
@@ -192,14 +192,14 @@ namespace EifelMono.Extensions.Test
             int count = 0;
 
             TestValue.Select()
-                .Case<ClassA>(
+                .CaseAs<ClassA>(
                 (p, o) =>
                 {
                     Debug.WriteLine("o.A={0}", o.A);
                     p.Continue();
                     count += 1;
                 })
-                .Case<ClassB>(
+                .CaseAs<ClassB>(
                 (p, o) =>
                 {
                     Debug.WriteLine("o.A={0}", o.A);
@@ -207,7 +207,7 @@ namespace EifelMono.Extensions.Test
                     p.Continue();
                     count += 10;
                 })
-                .Case<ClassC>((p, o) =>
+                .CaseAs<ClassC>((p, o) =>
                 {
                     Debug.WriteLine("o.A={0}", o.A);
                     Debug.WriteLine("o.B={0}", o.B);
@@ -237,20 +237,20 @@ namespace EifelMono.Extensions.Test
             int count = 0;
 
             TestValue.Select()
-                .CaseOnEqual<ClassA>(
+                .Case<ClassA>(
                 (p, o) =>
                 {
                     Debug.WriteLine("o.A={0}", o.A);
                     count += 1;
                 })
-                .CaseOnEqual<ClassB>(
+                .Case<ClassB>(
                 (p, o) =>
                 {
                     Debug.WriteLine("o.A={0}", o.A);
                     Debug.WriteLine("o.B={0}", o.B);
                     count += 10;
                 })
-                .CaseOnEqual<ClassC>((p, o) =>
+                .Case<ClassC>((p, o) =>
                 {
                     Debug.WriteLine("o.A={0}", o.A);
                     Debug.WriteLine("o.B={0}", o.B);
