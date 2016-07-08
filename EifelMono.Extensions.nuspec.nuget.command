@@ -10,4 +10,4 @@ mono NuGet.exe pack EifelMono.Extensions.nuspec
 echo "-----------------------------------------"
 echo "UPLOAD to NuGet"
 echo "-----------------------------------------"
-mono NuGet.exe push *.nupkg
+mono NuGet.exe push *.nupkg -Source https://www.nuget.org/api/v2/package

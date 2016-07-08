@@ -47,7 +47,6 @@
     <Compile Include="Flow\FlowExtensions.Switch.cs" />
     <Compile Include="Log\LogProxyConsole.cs" />
     <Compile Include="Class\BoolClasses.cs" />
-    <Compile Include="Flow\FlowExtensions.cs" />
     <Compile Include="Type\EnumExtensions.cs" />
     <Compile Include="Type\ObjectExtensions.cs" />
     <Compile Include="Flow\Select.cs" />

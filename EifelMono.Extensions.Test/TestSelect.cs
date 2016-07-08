@@ -86,6 +86,7 @@ namespace EifelMono.Extensions.Test
             string ResultOnCaseMessageA = "";
             string ResultOnCaseMessageB = "";
             Select select = new Select()
+            .Options(useBase64: true, useEncrypt: true, useCompress: true)
             .OnOutput((text) =>
             {
 
@@ -108,6 +109,8 @@ namespace EifelMono.Extensions.Test
             {
 
             });
+
+            Assert.IsTrue((select != null));
         }
     }
 

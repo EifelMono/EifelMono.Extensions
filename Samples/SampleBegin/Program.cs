@@ -173,16 +173,20 @@ namespace SampleBegin
         {
             string ResultOnCaseMessageA = "";
             string ResultOnCaseMessageB = "";
-            Select select = new Select().OnOutput((text) =>
+            Select select = new Select()
+            .OnOutput((text) =>
             {
                 
-            }).Case<MessageA>((obj, s) =>
+            })
+            .Case<MessageA>((obj, s) =>
             {
                 ResultOnCaseMessageA = obj.A;
-            }).Case<MessageB>((obj, s) =>
+            })
+            .Case<MessageB>((obj, s) =>
             {
                 ResultOnCaseMessageB = obj.B;
-            }).Case<MessageAB>((obj, s) =>
+            })
+            .Case<MessageAB>((obj, s) =>
             {
                 ResultOnCaseMessageA = obj.A;
                 ResultOnCaseMessageB = obj.B;

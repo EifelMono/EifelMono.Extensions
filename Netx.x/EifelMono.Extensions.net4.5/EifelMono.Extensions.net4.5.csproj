@@ -86,9 +86,6 @@
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Class\BoolClasses.cs">
       <Link>Class\BoolClasses.cs</Link>
     </Compile>
-    <Compile Include="..\..\Pcl\EifelMono.Extensions\Flow\FlowExtensions.cs">
-      <Link>Flow\FlowExtensions.cs</Link>
-    </Compile>
     <Compile Include="..\..\Pcl\EifelMono.Extensions\Type\ObjectExtensions.cs">
       <Link>Type\ObjectExtensions.cs</Link>
     </Compile>

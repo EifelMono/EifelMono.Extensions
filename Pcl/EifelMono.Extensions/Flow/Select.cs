@@ -7,13 +7,71 @@ namespace EifelMono.Extensions
 {
     public class Select
     {
-        #region Convert
-        public bool UseBase64 { get; set; } = false;
+        #region Convert and Options
 
-        public JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
+        #region Json
+        protected JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.Objects
         };
+
+        public string ToJson(object obj)
+        {
+            return JsonConvert.SerializeObject(obj, JsonSerializerSettings);
+        }
+
+        public object FromJson(string text)
+        {
+            return JsonConvert.DeserializeObject<object>(text, JsonSerializerSettings);
+        }
+        #endregion
+
+        #region Encrypt
+        public bool UseEncrypt { get; set; } = false;
+
+        public string ToEncrypt(string text)
+        {
+            if (UseEncrypt)
+                return text;
+            else
+                return text;
+        }
+
+        public string FromEncrypt(string text)
+        {
+            if (UseEncrypt)
+                return text;
+            else
+                return text;
+        }
+        #endregion
+
+        #region Compress
+
+        public bool UseCompress { get; set; } = false;
+
+        public string ToCompress(string text)
+        {
+            if (UseCompress)
+                return text;
+            else
+                return text;
+        }
+
+        public string FromCompress(string text)
+        {
+            if (UseCompress)
+            {
+                return text;
+            }
+            else
+                return text;
+        }
+
+        #endregion
+
+        #region Base64
+        public bool UseBase64 { get; set; } = false;
 
         public string ToBase64(string text)
         {
@@ -33,16 +91,28 @@ namespace EifelMono.Extensions
             else
                 return text;
         }
+        #endregion
+
+        #region Text
+        public Select Options(bool useEncrypt = false, bool useCompress = false, bool useBase64 = false)
+        {
+            UseEncrypt = useEncrypt;
+            UseCompress = useCompress;
+            UseBase64 = useBase64;
+            return this;
+        }
 
         public string ToText(object obj)
         {
-            return ToBase64(JsonConvert.SerializeObject(obj, JsonSerializerSettings));
+            return ToBase64(ToCompress(ToEncrypt(ToJson(obj))));
         }
 
-        public object FromText(string textobj)
+        public object FromText(string text)
         {
-            return JsonConvert.DeserializeObject<object>(FromBase64(textobj), JsonSerializerSettings);
+            return FromJson(FromEncrypt(FromCompress(FromBase64(text))));
         }
+        #endregion
+
         #endregion
 
         #region Output
@@ -59,7 +129,7 @@ namespace EifelMono.Extensions
         }
         #endregion
 
-        #region Input
+        #region Flow
         protected Dictionary<Type, Action<object, Select>> Cases = new Dictionary<Type, Action<object, Select>>();
         public Select Case<T>(Action<T, Select> action) where T : class
         {
@@ -92,7 +162,9 @@ namespace EifelMono.Extensions
             m_OnDefaultObject = action;
             return this;
         }
+        #endregion
 
+        #region Input
         public void Input(string text)
         {
             Input(FromText(text));
