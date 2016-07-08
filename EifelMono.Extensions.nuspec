@@ -9,6 +9,9 @@
     <projectUrl>https://github.com/EifelMono/EifelMono.Extensions</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Extension Methods If, Switch, Select, In, InRange, Log and more</description>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="9.0.1" />
+    </dependencies>
     <summary />
     <releaseNotes>THE BEGIN</releaseNotes>
     <copyright>Use it or lose it!</copyright>
