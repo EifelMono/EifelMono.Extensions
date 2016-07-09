@@ -1,5 +1,7 @@
 ﻿using System;
 using EifelMono.Extensions;
+using System.Collections.Generic;
+using System.Net.NetworkInformation;
 
 namespace SelectSample
 {
@@ -22,46 +24,54 @@ namespace SelectSample
     {
         public static void Main(string[] args)
         {
-            string ResultOnCaseMessageA = "";
-            string ResultOnCaseMessageB = "";
-            Select select = new Select();
+            Select select = new Select()
+                .Options(useBase64: true, useEncrypt: false, useCompress: false)
+                .OnOutput((t, o, s) =>
+                {
+                    Console.WriteLine($"OutputAsText={t} Output.type= {o.GetType()}");
+                    if (s.UseBase64)
+                        Console.WriteLine($"Output={s.FromBase64(t)}");
+                })
+                .Case<MessageA>((o, s) =>
+                {
+                    Console.WriteLine($"MessageA.A={o.A}");
+                })
+                .Case<MessageB>((o, s) =>
+                {
+                    Console.WriteLine($"MessageB.B={o.B}");
+                    s.Output(new MessageA { A = o.B });
+                })
+                .Case<MessageAB>((o, s) =>
+                {
+                    Console.WriteLine($"MessageAB.A={o.A}");
+                    Console.WriteLine($"MessageAB.B={o.B}");
+                })
+                .Default((o, s) =>
+                {
+                Console.WriteLine($"Default:{o}");
+                });
 
-            select.Options(useBase64: true, useEncrypt: false, useCompress: false)
-            .OnOutput((text) =>
+            List<object> Messages = new List<object>
             {
-                Console.WriteLine($"Output={text}");
-                if (select.UseBase64)
-                    Console.WriteLine($"Output={select.FromBase64(text)}");
-            })
-            .Case<MessageA>((obj, s) =>
-            {
-                ResultOnCaseMessageA = obj.A;
-            })
-            .Case<MessageB>((obj, s) =>
-            {
-                ResultOnCaseMessageB = obj.B;
-                s.Output(new MessageA { A = obj.B });
-            })
-            .Case<MessageAB>((obj, s) =>
-            {
-                ResultOnCaseMessageA = obj.A;
-                ResultOnCaseMessageB = obj.B;
-            });
+                new MessageA { A = "MessageA.A" },
+                new MessageB { B = "MessageB.B" },
+                new MessageAB { A = "MessageAB.A", B = "MessageAB.B" },
+                "Hallo"
+            };
 
-            select.InputUnitTest(new MessageA { A = "MessageA.A" });
-            Console.WriteLine($"MessageA.A={ResultOnCaseMessageA}");
-            select.InputUnitTest(new MessageB { B = "MessageB.B" });
-            Console.WriteLine($"MessageB.B={ResultOnCaseMessageB}");
-            select.InputUnitTest(new MessageAB { A = "MessageAB.A", B = "MessageAB.B" });
-            Console.WriteLine($"MessageAB.A={ResultOnCaseMessageA} MessageAB.B={ResultOnCaseMessageB}");
+            // Test as obj
+            foreach (var message in Messages)
+                select.Input(message);
 
+            // Test as obj no base64 input/output
             select.UseBase64 = false;
-            select.InputUnitTest(new MessageA { A = "MessageA.A" });
-            Console.WriteLine($"MessageA.A={ResultOnCaseMessageA}");
-            select.InputUnitTest(new MessageB { B = "MessageB.B" });
-            Console.WriteLine($"MessageB.B={ResultOnCaseMessageB}");
-            select.InputUnitTest(new MessageAB { A = "MessageAB.A", B = "MessageAB.B" });
-            Console.WriteLine($"MessageAB.A={ResultOnCaseMessageA} MessageAB.B={ResultOnCaseMessageB}");
+            foreach (var testMessage in Messages)
+                select.Input(select.ToText(testMessage));
+
+            // Test as obj base64 input/output
+            select.UseBase64 = true;
+            foreach (var testMessage in Messages)
+                select.Input(select.ToText(testMessage));
         }
     }
 }

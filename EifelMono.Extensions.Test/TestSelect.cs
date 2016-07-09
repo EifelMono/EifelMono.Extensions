@@ -30,7 +30,7 @@ namespace EifelMono.Extensions.Test
 
         public TestSelect1()
         {
-            select.OnOutput((text) =>
+            select.OnOutput((t, o, s) =>
             {
 
             });
@@ -87,23 +87,23 @@ namespace EifelMono.Extensions.Test
             string ResultOnCaseMessageB = "";
             Select select = new Select()
             .Options(useBase64: true, useEncrypt: true, useCompress: true)
-            .OnOutput((text) =>
+            .OnOutput((t, o, s) =>
             {
 
             })
-            .Case<MessageA>((a, s) =>
+            .Case<MessageA>((o, s) =>
             {
-                ResultOnCaseMessageA = a.A;
+                ResultOnCaseMessageA = o.A;
                 s.Output(null);
             })
-            .Case<MessageB>((b, s) =>
+            .Case<MessageB>((o, s) =>
             {
-                ResultOnCaseMessageB = b.B;
+                ResultOnCaseMessageB = o.B;
             })
-            .Case<MessageAB>((ab, s) =>
+            .Case<MessageAB>((o, s) =>
             {
-                ResultOnCaseMessageA = ab.A;
-                ResultOnCaseMessageB = ab.B;
+                ResultOnCaseMessageA = o.A;
+                ResultOnCaseMessageB = o.B;
             })
             .Default((obj, s) =>
             {

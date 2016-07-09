@@ -2,7 +2,6 @@
 using System.Text;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 namespace EifelMono.Extensions
 {
     public class Select
@@ -10,6 +9,9 @@ namespace EifelMono.Extensions
         #region Convert and Options
 
         #region Json
+        // Attention !!! 
+        // This is the Key!!!
+        // Addes the namespace in the json string
         protected JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.Objects
@@ -120,8 +122,8 @@ namespace EifelMono.Extensions
         #endregion
 
         #region Output
-        protected Action<string> m_OnOutput { get; set; } = null;
-        public Select OnOutput(Action<string> action)
+        protected Action<string, object, Select> m_OnOutput { get; set; } = null;
+        public Select OnOutput(Action<string, object, Select> action)
         {
             m_OnOutput = action;
             return this;
@@ -129,12 +131,13 @@ namespace EifelMono.Extensions
 
         public void Output(object obj)
         {
-            m_OnOutput.SafeInvoke(ToText(obj));
+            m_OnOutput.SafeInvoke(ToText(obj), obj, this);
         }
         #endregion
 
         #region Flow
         protected Dictionary<Type, Action<object, Select>> Cases = new Dictionary<Type, Action<object, Select>>();
+
         public Select Case<T>(Action<T, Select> action) where T : class
         {
             var objType = typeof(T);
@@ -144,28 +147,13 @@ namespace EifelMono.Extensions
             return this;
         }
 
-        public Select Case<T>(Action<T> action) where T : class
-        {
-            var objType = typeof(T);
-            if (!Cases.ContainsKey(objType))
-                Cases.Add(objType, null);
-            Cases[objType] = (obj, select) => action((T)obj);
-            return this;
-        }
-
-        protected Action<object, Select> m_OnDefaultObjectSelect = null;
-        protected Action<object> m_OnDefaultObject = null;
+        protected Action<object, Select> m_OnDefault = null;
         public Select Default(Action<object, Select> action)
         {
-            m_OnDefaultObjectSelect = action;
+            m_OnDefault = action;
             return this;
         }
 
-        public Select Default(Action<object> action)
-        {
-            m_OnDefaultObject = action;
-            return this;
-        }
         #endregion
 
         #region Input
@@ -179,10 +167,7 @@ namespace EifelMono.Extensions
             if (Cases.ContainsKey(objType))
                 Cases[objType].SafeInvoke(obj, this);
             else
-            {
-                m_OnDefaultObjectSelect.SafeInvoke(obj, this);
-                m_OnDefaultObject.SafeInvoke(obj);
-            }
+                m_OnDefault.SafeInvoke(obj, this);
         }
 
         public void InputUnitTest(object obj)
