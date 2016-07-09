@@ -31,6 +31,7 @@ namespace EifelMono.Extensions
 
         public string ToEncrypt(string text)
         {
+            // comming later this year
             if (UseEncrypt)
                 return text;
             else
@@ -39,6 +40,7 @@ namespace EifelMono.Extensions
 
         public string FromEncrypt(string text)
         {
+            // comming later this year
             if (UseEncrypt)
                 return text;
             else
@@ -52,6 +54,7 @@ namespace EifelMono.Extensions
 
         public string ToCompress(string text)
         {
+            // comming later this year
             if (UseCompress)
                 return text;
             else
@@ -60,6 +63,7 @@ namespace EifelMono.Extensions
 
         public string FromCompress(string text)
         {
+            // comming later this year
             if (UseCompress)
             {
                 return text;

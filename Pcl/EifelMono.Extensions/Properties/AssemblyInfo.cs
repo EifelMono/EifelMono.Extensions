@@ -29,6 +29,6 @@ namespace EifelMono.Extensions
 {
     class AssemblyInfoProperties
     {
-        public const string Version= "2.2.2";
+        public const string Version= "2.2.3";
     }
 }
