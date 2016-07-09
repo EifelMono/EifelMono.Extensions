@@ -2,8 +2,9 @@
 
 <H2>Sample Switch class</H2>
 
-swtich case for classes and converting json string to cases and output the result...
-json strings works wits typenames in the json string.
+Switch case for classes and json string converting to classes 
+to cases and output and then result...
+json strings works with type names in the json string.
 
 ```c#
 using System;
