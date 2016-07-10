@@ -1,7 +1,6 @@
 ﻿using System;
 using EifelMono.Extensions;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
 
 namespace SelectSample
 {
