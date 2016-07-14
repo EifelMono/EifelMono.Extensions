@@ -37,13 +37,13 @@
     <Compile Include="TestEnum.cs" />
     <Compile Include="TestIf.cs" />
     <Compile Include="TestIn.cs" />
-    <Compile Include="TestMD.cs" />
     <Compile Include="TestExtensionSelect.cs" />
     <Compile Include="TestString.cs" />
     <Compile Include="TestStringType.cs" />
     <Compile Include="TestSwitch.cs" />
     <Compile Include="TestGeneric.cs" />
     <Compile Include="TestSelect.cs" />
+    <Compile Include="TestPipe.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

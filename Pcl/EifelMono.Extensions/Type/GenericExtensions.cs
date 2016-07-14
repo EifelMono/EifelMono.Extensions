@@ -166,6 +166,18 @@ namespace EifelMono.Extensions
         }
 
         #endregion
+
+        /// <summary>
+        /// Piping the orginal value but calling and void function
+        /// </summary>
+        /// <param name="value">Value.</param>
+        /// <param name="action">Action.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
+        public static T Pipe<T>(this T pipe, Action<T> action)
+        {
+            action(pipe);
+            return pipe;
+        }
     }
 
     public static partial class Static
