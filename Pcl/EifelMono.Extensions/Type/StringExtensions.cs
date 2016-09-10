@@ -184,25 +184,25 @@ namespace EifelMono.Extensions
 
         public static string Before(this string value, string search)
         {
-            int pos = value.IndexOf(search);
+            int pos = value.IndexOf(search, StringComparison.Ordinal);
             return pos != -1 ? value.Substring(0, pos) : "";
         }
 
         public static string LastBefore(this string value, string search)
         {
-            int pos = value.LastIndexOf(search);
+            int pos = value.LastIndexOf(search, StringComparison.Ordinal);
             return pos != -1 ? value.Substring(0, pos) : "";
         }
 
         public static string After(this string value, string search)
         {
-            int pos = value.IndexOf(search);
+            int pos = value.IndexOf(search, StringComparison.Ordinal);
             return pos != -1 ? value.Substring(pos + search.Length) : "";
         }
 
         public static string LastAfter(this string value, string search)
         {
-            int pos = value.LastIndexOf(search);
+            int pos = value.LastIndexOf(search, StringComparison.Ordinal);
             return pos != -1 ? value.Substring(pos + search.Length) : "";
         }
 
