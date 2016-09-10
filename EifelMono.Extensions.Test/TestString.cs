@@ -179,6 +179,25 @@ namespace EifelMono.Extensions.Test
             Assert.IsTrue("".ValueFromKVPair() == "");
             Assert.IsTrue("Key".ValueFromKVPair() == "");
         }
+
+        [Test()]
+        public void TestString4()
+        {
+            Assert.IsTrue("First:Last".Before(":")=="First");
+            Assert.IsTrue("First:Last".LastBefore(":") == "First");
+            Assert.IsTrue("First:Last".After(":") == "Last");
+            Assert.IsTrue("First:Last".LastAfter(":") == "Last");
+
+            Assert.IsTrue("First:G2:G3:Last".Before(":") == "First");
+            Assert.IsTrue("First:G2:G3:Last".LastBefore(":") == "First:G2:G3");
+            Assert.IsTrue("First:G2:G3:Last".After(":") == "G2:G3:Last");
+            Assert.IsTrue("First:G2:G3:Last".LastAfter(":") == "Last");
+
+            Assert.IsTrue("First:G2:G2:G2:Last".Before("G2") == "First:");
+            Assert.IsTrue("First:G2:G2:G2:Last".LastBefore("G2") == "First:G2:G2:");
+            Assert.IsTrue("First:G2:G2:G2:Last".After("G2") == ":G2:G2:Last");
+            Assert.IsTrue("First:G2:G2:G2:Last".LastAfter("G2") == ":Last");
+        }
     }
 }
 

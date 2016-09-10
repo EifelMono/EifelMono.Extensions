@@ -61,7 +61,7 @@ namespace EifelMono.Extensions
 
         #region InStartsWith
 
-        public static bool InStartsWith(this string value, IEnumerable<string>  choices)
+        public static bool InStartsWith(this string value, IEnumerable<string> choices)
         {
             foreach (string choice in choices)
                 if (value.StartsWith(choice))
@@ -84,7 +84,7 @@ namespace EifelMono.Extensions
 
         public static bool InStartsWith(this IEnumerable<string> values, params string[] choices)
         {
-            return InStartsWith(values, choices  as IEnumerable<string>);
+            return InStartsWith(values, choices as IEnumerable<string>);
         }
 
         #endregion
@@ -185,25 +185,25 @@ namespace EifelMono.Extensions
         public static string Before(this string value, string search)
         {
             int pos = value.IndexOf(search);
-            return pos != -1 ? value.Substring(0, pos - search.Length + 1) : "";
+            return pos != -1 ? value.Substring(0, pos) : "";
         }
 
         public static string LastBefore(this string value, string search)
         {
             int pos = value.LastIndexOf(search);
-            return pos != -1 ? value.Substring(0, pos - search.Length + 1) : "";
+            return pos != -1 ? value.Substring(0, pos) : "";
         }
 
         public static string After(this string value, string search)
         {
             int pos = value.IndexOf(search);
-            return pos != -1 ? value.Substring(pos + 1) : "";
+            return pos != -1 ? value.Substring(pos + search.Length) : "";
         }
 
         public static string LastAfter(this string value, string search)
         {
             int pos = value.LastIndexOf(search);
-            return pos != -1 ? value.Substring(pos + 1) : "";
+            return pos != -1 ? value.Substring(pos + search.Length) : "";
         }
 
         #endregion
