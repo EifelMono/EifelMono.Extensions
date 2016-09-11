@@ -169,6 +169,7 @@ namespace EifelMono.Extensions
 
         /// <summary>
         /// Piping the orginal value but calling and void function
+        /// Pipe with return is in public static partial class FlowExtensions
         /// </summary>
         /// <param name="value">Value.</param>
         /// <param name="action">Action.</param>
@@ -178,6 +179,8 @@ namespace EifelMono.Extensions
             action(pipe);
             return pipe;
         }
+
+
     }
 
     public static partial class Static

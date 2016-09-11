@@ -63,6 +63,36 @@ namespace EifelMono.Extensions.Test
             Assert.IsTrue(list3[2] == "list1.2");
             Assert.IsTrue(list3[3] == "list1.3");
         }
+
+        [Test()]
+        public void Test4()
+        {
+            string a = "Hallo".Pipe((v) =>
+            {
+                 v = v + "Karl";
+            });
+            Assert.IsTrue(a == "Hallo");
+
+            string b = "Hallo".Pipe((v) =>
+            {
+                v = v + "Karl";
+                return v;
+            });
+            Assert.IsTrue(b == "HalloKarl");
+
+            int x = 4.Pipe((v) =>
+            {
+                v = v + 1;
+            });
+            Assert.IsTrue(x == 4);
+
+            int y = 4.Pipe((v) =>
+            {
+                v = v + 1;
+                return v;
+            });
+            Assert.IsTrue(y == 5);
+        }
     }
 }
 
